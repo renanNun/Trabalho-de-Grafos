@@ -312,6 +312,49 @@ Aresta* Grafo::getAresta(int idOrigem, int idFim) {
 
 }
 
+// Deleta só a ida, se for deletar a ida e a volta, favor chamar duas vezes
+bool Grafo::deleteAresta(int idOrigem, int idFim){
+    No * origem = this->getNo(idOrigem);
+    if (origem == nullptr)return false;
+
+    // Deletando a aresta da lista de adjacencia da origem
+    if(origem != nullptr){
+        Aresta* anterior = origem->getAresta();
+
+        if(anterior->getProx() == nullptr){
+            return false;
+        }
+        Aresta* del = anterior->getProx();
+        for (anterior; del != nullptr && del->getNoAdj() != idFim; anterior = anterior->getProx()){
+            del = del->getProx();
+        }
+        if(del == nullptr)return false;
+        // A aresta vai ser tirada da lista de adjacencias
+        anterior->setProx(del->getProx());
+        delete *del;
+    }
+    // Atualizando os graus de tudo
+    origem->diminuiGrauSaida();
+    this->getNo(idFim)->diminuiGrauEntrada();
+    this->atualizaGrau(origem->getGrauSaida());
+
+}
+bool Grafo::deleteNo(int id){
+    No* del = this.getNo(id);
+    if(del == nullptr)return false;
+    No *list = this->listaNos;
+
+    Aresta* percorredor = del->getAresta();
+    while(percorredor!= nullptr){
+        bool hasDeleted = this->deleteAresta(percorredor->getNoAdj(),id);
+        if(!hasDeleted){
+            cout << "Alguma inversa n foi deletada ou não existia" << endl;
+        }
+    }
+    delete *del;
+}
+
+
 void Grafo::atualizaGrau(int grau) {
     if (grau > this->grau)
         this->grau = grau;

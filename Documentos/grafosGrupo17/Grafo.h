@@ -30,6 +30,9 @@
       No* getNo(int id);
       Aresta* getAresta(int idOrigem, int idFim);
 
+      bool deleteAresta(int idOrigem, int idFim);
+      bool deleteNo(int id);
+
       int getGrau();
       void buscaProfundidade(int id);
       void Caminhamentolargura(int id);
