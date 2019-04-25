@@ -30,6 +30,10 @@
       No* getNo(int id);
       Aresta* getAresta(int idOrigem, int idFim);
 
+      int getGrau();
+      void buscaProfundidade(int id);
+      void Caminhamentolargura(int id);
+
   private:
 
       No* listaNos;

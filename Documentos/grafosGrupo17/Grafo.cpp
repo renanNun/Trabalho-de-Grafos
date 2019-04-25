@@ -376,3 +376,99 @@ void Grafo::leitura_arquivo(string arquivo) {
         cout << "Input file does not open." << endl;
     }
 }
+
+//Arquivos Luan-> teste!!
+
+int Grafo::getGrau(){
+return this->grau;
+}
+
+void Grafo::buscaProfundidade(int id){
+
+
+int v=grau;
+//Criar um vetor de visitados
+bool visitados[v];
+//Marca vetor como falso
+for(int i = 0; i < v; i++)
+    visitados[i] = false;
+//pilha de ids
+stack <int> pilhadeIDs;
+
+while(true)
+{
+
+    if(!visitados[v])
+    {
+        cout << "Visitando vertice " << id << " ...\n";
+        visitados[id] = true; // marca como visitado
+        pilhadeIDs.push(id); // insere "v" na pilha
+    }
+
+bool achou = false;
+		list<int>::iterator it;
+
+		// busca por um vizinho não visitado
+		for(it = adj[id].begin(); it != adj[v].end(); it++)
+		{
+			if(!visitados[*it])
+			{
+				achou = true;
+				break;
+			}
+		}
+
+	if(achou)
+			id = *it; // atualiza o "id"
+		else
+		{
+			// se todos os vizinhos estão visitados ou não existem vizinhos
+			// remove da pilha
+			pilhadeIDs.pop();
+			// se a pilha ficar vazia, então terminou a busca
+			if(pilhadeIDs.empty())
+				break;
+			// se chegou aqui, é porque pode pegar elemento do topo
+			v = pilhadeIDs.top();
+		}
+
+
+
+}
+}
+
+void Grafo::Caminhamentolargura(int id)
+{
+	queue<int> filadeids;
+	int v=getGrau();
+	bool visitados[v]; // vetor de visitados
+
+	for(int i = 0; i < v; i++)
+		visitados[i] = false;
+
+	cout << "Visitando vertice " << id << " ...\n";
+	visitados[id] = true; // marca como visitado
+
+	while(true)
+	{
+		list<int>::iterator it;
+		for(it = adj[id].begin(); it != adj[id].end(); it++)
+		{
+			if(!visitados[*it])
+			{
+				cout << "Visitando vertice " << *it << " ...\n";
+				visitados[*it] = true; // marca como visitado
+				filadeids.push(*it); // insere na fila
+			}
+		}
+
+		// verifica se a fila NÃO está vazia
+		if(!filadeids.empty())
+		{
+			id= filadeids.front(); // obtém o primeiro elemento
+			filadeids.pop(); // remove da fila
+		}
+		else
+			break;
+	}
+}

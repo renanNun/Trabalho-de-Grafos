@@ -36,10 +36,10 @@ Aresta::Aresta(int _no, float _peso) {
      */
 Aresta::~Aresta() {
     Aresta* ant = this->prox;
-    while(a != nullptr){
-        Aresta *a = ant->getProx();
+    while(ant != nullptr){
+        Aresta *ant = ant->getProx();
         delete ant;
-        a = a->getProx();
+        ant = ant->getProx();
     }
 }
 
