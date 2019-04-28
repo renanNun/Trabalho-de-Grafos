@@ -38,6 +38,7 @@
       void Caminhamentolargura(int id);
 
       int componentesConexas();
+      int componentesFortConexas();
 
   private:
 
@@ -52,6 +53,7 @@
       void atualizaGrau(int grau);
       void leitura_arquivo(string arquivo);
       void auxConexo(No *v);
+      void auxFortConexo(No *v);
 
   };
 

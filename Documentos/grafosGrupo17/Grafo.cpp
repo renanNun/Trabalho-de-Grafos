@@ -519,7 +519,7 @@ void Grafo::Caminhamentolargura(int id)
 int Grafo::componentesConexas(){
 
     int cont = 0; //Contador
-    No *p;
+    No *p = listaNos;
     while (p != nullptr){
         if (p->foiVisitado() == false) {
             cont = cont + 1;
@@ -535,4 +535,25 @@ void Grafo::auxConexo(No *v){
     v->setVisitado(true);
     if (!(v->getProx()->getVisitado()))
         this->auxConexo(v->geProx());
+}
+
+int Grafo::componentesFortConexas(){
+    int cont = 0;
+    No *p = listaNos;
+    while (p != nullptr){
+        if (p->foiVisitado() == false){
+            cont = cont + 1;
+            auxFortConexo(p);
+        }
+        p = p->getProx();
+    }
+}
+
+void Grafo::auxFortConexo(No *v){
+    v->setVisitado(true);
+    int id = v->getAresta()->getId();
+    No *p = buscaProfundidade(id);
+    if(p !-nullptr && p->foiVisitado() == false){
+        auxForConexo(p);
+    }
 }
