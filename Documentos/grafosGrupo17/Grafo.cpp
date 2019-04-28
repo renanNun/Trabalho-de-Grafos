@@ -515,3 +515,24 @@ void Grafo::Caminhamentolargura(int id)
 			break;
 	}
 }
+
+int Grafo::componentesConexas(){
+
+    int cont = 0; //Contador
+    No *p;
+    while (p != nullptr){
+        if (p->foiVisitado() == false) {
+            cont = cont + 1;
+            auxConexo(p);
+        }
+        p = p->getProx();
+    }
+
+    return cont;
+}
+
+void Grafo::auxConexo(No *v){
+    v->setVisitado(true);
+    if (!(v->getProx()->getVisitado()))
+        this->auxConexo(v->geProx());
+}

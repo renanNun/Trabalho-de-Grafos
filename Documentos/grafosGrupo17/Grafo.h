@@ -37,6 +37,8 @@
       void buscaProfundidade(int id);
       void Caminhamentolargura(int id);
 
+      int componentesConexas();
+
   private:
 
       No* listaNos;
@@ -49,6 +51,7 @@
 
       void atualizaGrau(int grau);
       void leitura_arquivo(string arquivo);
+      void auxConexo(No *v);
 
   };
 
