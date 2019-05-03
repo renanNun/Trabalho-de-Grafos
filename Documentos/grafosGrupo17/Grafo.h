@@ -40,6 +40,8 @@
       int componentesConexas();
       int componentesFortConexas();
 
+      void GerarComplementar(Grafo grafinho);
+
   private:
 
       No* listaNos;

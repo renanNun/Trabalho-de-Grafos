@@ -557,3 +557,122 @@ void Grafo::auxFortConexo(No *v){
         auxForConexo(p);
     }
 }
+
+void Grafo::GerarComplementar(Grafo grafinho)
+{
+    if (this->getGrau() > 0)
+    {
+        cout << "Este grafo já possui nós, apague os nós ou crie um novo objeto instanciado sem nós." << endl;
+    }
+    else
+    {
+        int idsNos[ordem][ordem]; //matriz que será uma cópia da lista encadeada, algo como uma pseudo-lista
+        int comprimentos[ordem]; //Comprimento aqui é a quantidade de nós adjacentes que cada elemento da lista tem
+        int comprimentosComplementares[ordem]; //Quantos nós adjacentes cada nó do grafo complementar terá
+        int complementares[ordem][ordem]; //matriz que será como uma pseudo-lista, mas referente ao grafo complementar
+        bool estaNaLista = false;
+
+        int j, m, n, p, s, t, u = 0;
+
+
+
+        /*
+        -Inicializa a matriz que é uma pseudolista de adjacência com todos os valores iguais a -1
+        -Inicializa o vetor "comprimentos" que conterá quantos nós são adjacentes com todos os valores iguais a 0
+        -Inicializa o vetor "comprimentosComplementares" que conterá quantos nós adjacentes cada nó do Grafo Complementar terá
+        */
+        for (int q = 0; q <= ordem; q++)
+        {
+            for (int r = 0; r <= ordem; r++)
+            {
+                complementares[q][r] = -1;
+                comprimentos[q] = 0;
+                comprimentosComplementares[q] = 0;
+            }
+        }
+
+
+
+        /*
+        -Faz uma copia da lista de adjacência para dentro da pseudo-lista, que é uma matriz
+        Aqui, a primeira coluna (i,0) representa os nós da lista, e os seus adjacênctes estão contidos
+        em suas respectivas linhas.
+        Por exemplo: para um nó 4, que tem como adjacentes 1 e 3, temos na lista a representação:
+        4->3->7
+        Já na matriz, temos:
+        Colunas: 0 1 2
+                 4 3 7
+        */
+        for (No* n = grafinho.listaNos, int i = 0; n != nullptr; n = n->getProx(), i++)
+        {
+            idsNos[i][j]=n->getId();
+
+            for (Aresta *a = grafinho.getAresta(); a != nullptr; a = a->getProx(), j++)
+            {
+                if (a->getProx() != nullptr)
+                {
+                    idsNos[i][j] = a->getNoAdj();
+                    comprimentos[i]++;
+                }
+            }
+        }
+
+
+
+        /*
+        -Aqui copiamos a primeira coluna, que contém os nós, para a matriz de nós complementares
+        */
+        for (m = 0; m <= ordem-1; m++)
+        {
+            complementares[m][0] = idsNos[m][0];
+        }
+
+
+
+        /*
+        Aqui percorremos a matriz formada no bloco de código anterior verificando se
+        os elementos da primeira coluna [u][0], que são os nós do grafo, então entre
+        os adjacentes de cada nó. Caso estejam o loop dá um break e passa para o próximo.
+        Em caso do nó não ser achado entre os adjacentes, ele é adicionado nas colunas de
+        adjacencia da matriz complementares.
+        */
+        for (int u = 0; u <= ordem-1; u++)
+        {
+            for (n = 0; n <= ordem-1; n++)
+            {
+                estaNaLista = false;
+
+                for (int p = 1; p <= comprimentos[n]; p++)
+                {
+                    estaNaLista = (idsNos[n][0] == idsNos[n][p]);
+                    if (estaNaLista)
+                        break;
+                }
+
+                if (!estaNaLista)
+                {
+                    complementares[u][t] = idsNos[n][0];
+                    t++;
+                    comprimentosComplementares[u]++;
+                }
+            }
+        }
+
+
+
+        /*
+        Por fim, a matriz de complementares é transformada novamente em uma lista de adjacencia,
+        agora de um grafo complementar ao passado por parametro.
+        */
+        for (int k = complementares[0][0]; k <= complementares[ordem-1][0]; k++)
+        {
+            this->setNo(k);
+            for (int l = complementares[k][1]; l <= comprimentosComplementares[k]; l++)
+            {
+                this->setAresta(complementares[k][0], complementares[k][l]);
+            }
+        }
+
+        cout << "Grafo complementar criado com sucesso." << endl;
+    }
+}
