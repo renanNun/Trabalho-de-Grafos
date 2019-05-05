@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1557004161 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\aresta.cpp
+	"Aresta.h"
+
+1557004080 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\aresta.h
+	<iostream>
+	"No.h"
+
+1557084196 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\no.h
+	<iostream>
+	<list>
+
+1557083013 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.cpp
+	"Grafo.h"
+	<queue>
+
+1557083865 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
+	<iostream>
+	"No.h"
+	"Aresta.h"
+
+1557084418 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\main.cpp
+	<iostream>
+	<string>
+	"Grafo.h"
+	"leitor.h"
+
+1557084518 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\no.cpp
+	"No.h"
+
+1557084387 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.cpp
+	"leitor.h"
+
+1557083269 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.h
+	<iostream>
+	<fstream>
+	<string>
+	<list>
+	"Grafo.h"
+
