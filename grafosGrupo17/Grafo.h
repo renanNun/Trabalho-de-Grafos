@@ -35,6 +35,7 @@ public:
     std::list<No*> retornaListaNos ();
     std::list<Aresta*> retornaListaArestas ();
 
+    void preencheAdjacencia(int id);
 private:
     int ordem;
     int grau;

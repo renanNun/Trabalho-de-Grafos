@@ -22,20 +22,14 @@ void Guloso::preencheVector(Grafo *g)
     }
 }
 
-void Guloso::ordenaCriterio(float criterio)
+void Guloso::ordenaCriterio(bool (*criterio)(No *no1, No *no2))
 {
-    std::sort(this->candidatos.begin(), this->candidatos.end(),ponderadoIgual(criterio));
+    std::sort(this->candidatos.begin(), this->candidatos.end(),criterio);
 }
 
-bool Guloso::ponderadoIgual(float chave)
+bool Guloso::ponderadoIgual(No *no1,No *no2)
 {
-    auto i = candidatos.begin();
-    while(i !=candidatos.end())
-    {
-        No *aux = *i;
-        return aux->getPeso() == chave;
-        i++;
-    }
+    return no1->getPeso() < no2->getPeso();
 }
 
 void Guloso::atulizarVetor(No *escolhido)
@@ -58,14 +52,14 @@ void Guloso::removeVizinhosDoCandidato(No *no)
     }
 }
 
-std::list<No *> Guloso::preencheSubConjVert(Grafo *g, float crit)
+std::list<No *> Guloso::preencheSubConjVert(Grafo *g)
 {
     this->preencheVector(g);
+    this->ordenaCriterio( ponderadoIgual);
 
     while(candidatos.size() > 0)
     {
         No *aux = candidatos.at(0);
-        this->ordenaCriterio(crit);
         this->subConjuntoDeVerticesPond.push_back(aux);
         this->atulizarVetor(aux);
 

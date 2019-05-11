@@ -41,12 +41,33 @@ void LeituraArquivo::atribuirDados(std::string arquivo,Grafo& grafo){
                no1->aumentaGrauEntrada();
                no2->aumentaGrauSaida();
 
-               Aresta *a = new Aresta(no1,no2);
+               grafo.setAresta(no1->getId(),no2->getId());
         }
     }
 }
 
 void LeituraArquivo::imprimirDados(std::string saida,Grafo& grafo){
+    std::ofstream file(saida);
 
+
+    if(file.is_open()){
+        file << "LISTA DE ADJACENCIA" << std::endl;
+        std::list<No*> auxiliar = grafo.retornaListaNos();
+        std::list<Aresta*> auxliar2 = grafo.retornaListaArestas();
+        for(auto i = auxiliar.begin();i != auxiliar.end();i++){
+            No *aux = *i;
+
+            file << aux->getId() << " ----> ";
+
+            for (auto j = aux->adjacentes.begin(); j != aux->adjacentes.end(); j++){
+                No *aux2 = *j;
+                file << "(" << aux2->getId() << ") -->";
+
+            }
+        }
+        file << std::endl;
+    } else {
+        std::cout << "Impossível abrir arquivo de saida" << std::endl;
+    }
 }
 

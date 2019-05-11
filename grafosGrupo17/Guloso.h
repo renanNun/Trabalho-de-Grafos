@@ -13,16 +13,16 @@ class Guloso{
 public:
     Guloso();
     ~Guloso();
+    std::list<No *> preencheSubConjVert(Grafo *g);
 private:
     std::list<No *> subConjuntoDeVerticesPond;
     std::vector<No *> candidatos;
     void preencheVector(Grafo *g);
-    void ordenaCriterio(float criterio); //Ordena o Vetor de acordo com o criterio escolhido
-    bool ponderadoIgual(float chave); //Isso aqui retorna se meu critério vai ser verdadeiro ou falso
+    void ordenaCriterio(bool (*criterio)(No *no1, No *no2)); //Ordena o Vetor de acordo com o criterio escolhido
+    static bool ponderadoIgual(No *no1,No *no2); //Isso aqui retorna se meu critério vai ser verdadeiro ou falso
     void atulizarVetor(No *escolhido);
     void removeNoDoCandidato(No *no);
     void removeVizinhosDoCandidato(No *no);
-    std::list<No *> preencheSubConjVert(Grafo *g, float crit);
 };
 
 #endif // GULOSO_H_INCLUDED

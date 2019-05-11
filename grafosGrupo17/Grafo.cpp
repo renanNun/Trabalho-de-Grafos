@@ -134,6 +134,7 @@ void Grafo::setNo(int id){
         this->setOrdem(this->getOrdem()+1);
         No *no = new No(id);
         this->nos.push_back(no);
+        this->preencheAdjacencia(id);
     }
     else {
         std::cout<< "Erro: Nó já existe no Grafo" << std::endl;
@@ -506,4 +507,8 @@ std::list<No*> Grafo::retornaListaNos (){
 
 std::list<Aresta*> Grafo::retornaListaArestas (){
     return arestas;
+}
+
+void Grafo::preencheAdjacencia(int id){
+
 }

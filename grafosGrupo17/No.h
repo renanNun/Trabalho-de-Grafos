@@ -21,7 +21,7 @@ public:
     bool getVisitado();
     float getPeso();
 
-    std::list<No *> adjacentes;
+    std::list<No *> adjacentes; //Eu não to preenchendo com os adjacentes também, tem que fazer uma funçao que os implemente
 private:
     int id;
     int grauDeSaida;
