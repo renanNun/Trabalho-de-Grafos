@@ -129,30 +129,36 @@ No* Grafo::getNo(int id)
      *
      * encapsulamento: public
      */
-void Grafo::setNo(int id){
-    if(getNo(id) != nullptr){
+void Grafo::setNo(int id)
+{
+    if(getNo(id) != nullptr)
+    {
         this->setOrdem(this->getOrdem()+1);
         No *no = new No(id);
         this->nos.push_back(no);
         this->preencheAdjacencia(id);
     }
-    else {
+    else
+    {
         std::cout<< "Erro: Nó já existe no Grafo" << std::endl;
     }
 }
 
-void Grafo::setAresta(int id1,int id2){
-     for (auto i = this->arestas.begin(); i != this->arestas.end(); i++){
+void Grafo::setAresta(int id1,int id2)
+{
+    for (auto i = this->arestas.begin(); i != this->arestas.end(); i++)
+    {
         Aresta *aux = *i;
         if(aux->getNo1()->getId() == id1 && aux->getNo2()->getId() == id2 ||
-           aux->getNo1()->getId() == id2 && aux->getNo2()->getId() == id1){
+                aux->getNo1()->getId() == id2 && aux->getNo2()->getId() == id1)
+        {
             std::cout << "Erro: já existe aresta que ligue ambos os nós";
             exit(0);
         }
-     }
+    }
 
-     Aresta *a = new Aresta(this->getNo(id1),this->getNo(id2));
-     this->arestas.push_back(a);
+    Aresta *a = new Aresta(this->getNo(id1),this->getNo(id2));
+    this->arestas.push_back(a);
 }
 
 
@@ -423,21 +429,22 @@ void Grafo::gerarComplementar()
 
         for (auto n = this->nos.begin(); n != this->nos.end(); n++)
         {
-            for(int i = 0; i < this->nos.size();i++){
-            No *aux = *n;
-            idsNos[i][j] = aux->getId();
-
-            for (auto a = this->arestas.begin(); a != this->arestas.end(); a++ , j++)
+            for(int i = 0; i < this->nos.size(); i++)
             {
-                Aresta *aux = *a;
-                int index = 0;
-                if (this->arestas.front() != nullptr)
+                No *aux = *n;
+                idsNos[i][j] = aux->getId();
+
+                for (auto a = this->arestas.begin(); a != this->arestas.end(); a++, j++)
                 {
-                    idsNos[i][j] = aux->getNo2()->getId();
-                    comprimentos[i]++;
+                    Aresta *aux = *a;
+                    int index = 0;
+                    if (this->arestas.front() != nullptr) //Isso aqui provavelmente não funciona, mas eu não sei como acessar o próximo elemento de um list, ACEITO AJUDA
+                    {
+                        idsNos[i][j] = aux->getNo2()->getId();
+                        comprimentos[i]++;
+                    }
+                    index++;
                 }
-                index++;
-            }
             }
         }
 
@@ -501,14 +508,26 @@ void Grafo::gerarComplementar()
 
 }
 
-std::list<No*> Grafo::retornaListaNos (){
+std::list<No*> Grafo::retornaListaNos ()
+{
     return nos;
 }
 
-std::list<Aresta*> Grafo::retornaListaArestas (){
+std::list<Aresta*> Grafo::retornaListaArestas ()
+{
     return arestas;
 }
 
-void Grafo::preencheAdjacencia(int id){
-
+void Grafo::preencheAdjacencia(int id)
+{
+    No *no = getNo(id);
+    for (auto i = this->nos.begin(); i != this->nos.end(); i++)
+    {
+        for (auto j = this->arestas.begin(); j != this->arestas.end(); j++)
+        {
+            Aresta *aux = *j;
+            if (no->getId() == aux->getNo1()->getId())
+                no->adjacentes.push_back(aux->getNo2());
+            }
+    }
 }
