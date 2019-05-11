@@ -13,8 +13,8 @@ public:
     Guloso();
     ~Guloso();
 private:
-    std::vector<No *> candidatos;
-    void preencheVector(Grafo *g);
+    std::vector<No *> subConjuntoDeVerticesPond;
+    void preencheVector(std::vector<No *> &candidatos,Grafo *g);
 
 };
 

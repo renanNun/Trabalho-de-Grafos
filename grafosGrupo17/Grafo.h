@@ -32,8 +32,8 @@ public:
     bool ehPonderadoAresta();
     bool ehPonderadoNo();
 
-    No retornaListaNos ();
-    Aresta retornaListaArestas ();
+    std::list<No*> retornaListaNos ();
+    std::list<Aresta*> retornaListaArestas ();
 
 private:
     int ordem;

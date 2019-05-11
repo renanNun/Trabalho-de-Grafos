@@ -10,11 +10,11 @@
 	<iostream>
 	<list>
 
-1557539600 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.cpp
+1557586877 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.cpp
 	"Grafo.h"
 	<queue>
 
-1557539587 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
+1557586855 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
 	<iostream>
 	"No.h"
 	"Aresta.h"
@@ -36,5 +36,14 @@
 	<fstream>
 	<string>
 	<list>
+	"Grafo.h"
+
+1557586982 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\guloso.cpp
+	"Guloso.h"
+
+1557585288 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\guloso.h
+	<iostream>
+	<list>
+	<vector>
 	"Grafo.h"
 
