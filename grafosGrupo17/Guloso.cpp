@@ -2,49 +2,75 @@
 
 using namespace std;
 
-Guloso::Guloso(){
+Guloso::Guloso()
+{
 
 }
 
-Guloso::~Guloso(){
+Guloso::~Guloso()
+{
 
 }
 
-void Guloso::preencheVector(Grafo *g){
+void Guloso::preencheVector(Grafo *g)
+{
     std::list<No*> auxiliar = g->retornaListaNos();
-    for(auto i = auxiliar.begin();i != auxiliar.end(); i++){
+    for(auto i = auxiliar.begin(); i != auxiliar.end(); i++)
+    {
         No *aux = *i;
         this->candidatos.push_back(aux);
     }
 }
 
-void Guloso::ordenaCriterio(float chave){
-    bool crit = this->ponderadoIgual(this->candidatos,chave);
-    std::sort(this->candidatos.begin(), this->candidatos.end(), criterio);
+void Guloso::ordenaCriterio(float criterio)
+{
+    std::sort(this->candidatos.begin(), this->candidatos.end(),ponderadoIgual(criterio));
 }
 
-bool Guloso::ponderadoIgual(No* no1,float chave){
-    return no1->getPeso() == chave;
+bool Guloso::ponderadoIgual(float chave)
+{
+    auto i = candidatos.begin();
+    while(i !=candidatos.end())
+    {
+        No *aux = *i;
+        return aux->getPeso() == chave;
+        i++;
+    }
 }
 
-void Guloso::atulizarVetor(No *escolhido){
+void Guloso::atulizarVetor(No *escolhido)
+{
     this->removeNoDoCandidato(escolhido);
     this->removeVizinhosDoCandidato(escolhido);
 }
 
-void Guloso::removeNoDoCandidato(No *no){
-    candidatos.erase(std::erase(candidatos.begin(),candidatos.end(),no),candidatos.end());
+void Guloso::removeNoDoCandidato(No *no)
+{
+    candidatos.erase(std::remove(candidatos.begin(),candidatos.end(),no),candidatos.end());
 }
 
-void Guloso::removeVizinhosDoCandidato(No *no){
-    for (auto i = no->adjacentes.begin(); i != no->adjacentes.end();i++){
+void Guloso::removeVizinhosDoCandidato(No *no)
+{
+    for (auto i = no->adjacentes.begin(); i != no->adjacentes.end(); i++)
+    {
         No *aux = *i;
         this->removeNoDoCandidato(aux);
     }
 }
 
-std::list<No *> Guloso::preencheSubConjVert(Grafo *g, float crit){
+std::list<No *> Guloso::preencheSubConjVert(Grafo *g, float crit)
+{
     this->preencheVector(g);
-    this->ordenaCriterio(crit);
+
+    while(candidatos.size() > 0)
+    {
+        No *aux = candidatos.at(0);
+        this->ordenaCriterio(crit);
+        this->subConjuntoDeVerticesPond.push_back(aux);
+        this->atulizarVetor(aux);
+
+    }
+
+    return subConjuntoDeVerticesPond;
 
 }

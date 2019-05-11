@@ -14,11 +14,11 @@ public:
     Guloso();
     ~Guloso();
 private:
-    std::vector<No *> subConjuntoDeVerticesPond;
+    std::list<No *> subConjuntoDeVerticesPond;
     std::vector<No *> candidatos;
     void preencheVector(Grafo *g);
-    void ordenaCriterio(float chave); //Ordena o Vetor de acordo com o criterio escolhido
-    bool ponderadoIgual(No* no1,float chave); //Isso aqui retorna se meu critério vai ser verdadeiro ou falso
+    void ordenaCriterio(float criterio); //Ordena o Vetor de acordo com o criterio escolhido
+    bool ponderadoIgual(float chave); //Isso aqui retorna se meu critério vai ser verdadeiro ou falso
     void atulizarVetor(No *escolhido);
     void removeNoDoCandidato(No *no);
     void removeVizinhosDoCandidato(No *no);
