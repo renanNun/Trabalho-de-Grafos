@@ -19,6 +19,7 @@ public:
     int aumentaGrauEntrada();
     void setVisitado(bool v);
     bool getVisitado();
+    float getPeso();
 
     std::list<No *> adjacentes;
 private:

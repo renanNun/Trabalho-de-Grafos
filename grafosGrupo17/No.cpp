@@ -128,3 +128,7 @@ void No::setVisitado(bool v){
 bool No::getVisitado(){
     return this->visitado;
 }
+
+float No::getPeso(){
+    return this->peso;
+}
