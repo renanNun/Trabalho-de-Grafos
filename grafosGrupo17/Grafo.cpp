@@ -500,3 +500,12 @@ void Grafo::gerarComplementar()
 
 }
 
+No Grafo::retornaListaNos (){
+    No *aux = *this->nos.begin();
+    return *aux;
+}
+
+Aresta Grafo::retornaListaArestas (){
+    Aresta *aux = *this->arestas.begin();
+    return *aux;
+}

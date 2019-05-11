@@ -32,6 +32,9 @@ public:
     bool ehPonderadoAresta();
     bool ehPonderadoNo();
 
+    No retornaListaNos ();
+    Aresta retornaListaArestas ();
+
 private:
     int ordem;
     int grau;

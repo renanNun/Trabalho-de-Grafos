@@ -10,16 +10,16 @@
 	<iostream>
 	<list>
 
-1557083013 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.cpp
+1557539600 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.cpp
 	"Grafo.h"
 	<queue>
 
-1557083865 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
+1557539587 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
 	<iostream>
 	"No.h"
 	"Aresta.h"
 
-1557084418 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\main.cpp
+1557084886 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\main.cpp
 	<iostream>
 	<string>
 	"Grafo.h"
@@ -28,10 +28,10 @@
 1557084518 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\no.cpp
 	"No.h"
 
-1557084387 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.cpp
+1557084917 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.cpp
 	"leitor.h"
 
-1557083269 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.h
+1557084871 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\leitor.h
 	<iostream>
 	<fstream>
 	<string>
