@@ -14,8 +14,9 @@
 	"Grafo.h"
 	<queue>
 
-1557598127 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
+1557670722 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17\grafo.h
 	<iostream>
+	<algorithm>
 	"No.h"
 	"Aresta.h"
 

@@ -2,6 +2,7 @@
 #define GRAFO_H_INCLUDED
 
 #include <iostream>
+#include <algorithm>
 #include "No.h"
 #include "Aresta.h"
 

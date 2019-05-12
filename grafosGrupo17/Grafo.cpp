@@ -373,6 +373,7 @@ int Grafo::quantComponentesFortConexas()
 }
 
 
+
 /**
      * Gerar Complementar de um Grafo
      *
@@ -427,6 +428,7 @@ void Grafo::gerarComplementar()
 
         j = 0;
 
+
         for (auto n = this->nos.begin(); n != this->nos.end(); n++)
         {
             for(int i = 0; i < this->nos.size(); i++)
@@ -437,13 +439,11 @@ void Grafo::gerarComplementar()
                 for (auto a = this->arestas.begin(); a != this->arestas.end(); a++, j++)
                 {
                     Aresta *aux = *a;
-                    int index = 0;
-                    if (this->arestas.front() != nullptr) //Isso aqui provavelmente não funciona, mas eu não sei como acessar o próximo elemento de um list, ACEITO AJUDA
+                    if (std::next(aux,j++) != nullptr) //Isso aqui provavelmente não funciona, mas eu não sei como acessar o próximo elemento de um list, ACEITO AJUDA
                     {
                         idsNos[i][j] = aux->getNo2()->getId();
                         comprimentos[i]++;
                     }
-                    index++;
                 }
             }
         }
@@ -508,16 +508,40 @@ void Grafo::gerarComplementar()
 
 }
 
+
+/**
+     * Retorna a lista de nos
+     *
+     *
+     *
+     * encapsulamento: public
+     */
 std::list<No*> Grafo::retornaListaNos ()
 {
     return nos;
 }
 
+
+/**
+     * Retorna a lista de arestas
+     *
+     *
+     *
+     * encapsulamento: public
+     */
 std::list<Aresta*> Grafo::retornaListaArestas ()
 {
     return arestas;
 }
 
+
+/**
+     * Preenche a Lista de Adjacência da classe No
+     *
+     *
+     *
+     * encapsulamento: public
+     */
 void Grafo::preencheAdjacencia(int id)
 {
     No *no = getNo(id);
