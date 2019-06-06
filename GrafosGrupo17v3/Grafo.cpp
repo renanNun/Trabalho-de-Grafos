@@ -188,3 +188,63 @@ void Grafo::removeAresta(int no1,int no2){
         }
     }
 }
+
+void Grafo::buscaEmProfundidade(int id){
+
+    No* p = this->primeiro;
+    int vetorDeVisitados = new int [this->numNos];
+
+    while(p != NULL){
+        vetorDeVisitados[this->buscaIndice(p->getId())] = 0;
+        p = p->getProx();
+    }
+
+    p = this->primeiro;
+
+    while (p != NULL){
+        if(vetorDeVisitados[this->buscaIndice(p->getId())] == 0){
+            this->auxBuscaProfundidade(p, vetorDeVisitados, id);
+        }
+
+        p = p->getProx();
+    }
+
+    delete [] vetorDeVisitados;
+}
+
+void Grafo::auxBuscaProfundidade(No* p,int *vetorDeVisitados,int id){
+    Aresta* a = p->getAresta();
+
+    vetorDeVisitados[this->buscaIndice(a->getId())] = 1;
+
+    if(p->getId() == id){
+        return p;
+    }
+
+    while(a != NULL){
+        if (a != NULL && vetorDeVisitados[this->buscaIndice(a->getId())] == 0)
+            this->auxBuscaProfundidade(this->buscaNo(a->getId()),vetorDeVisitados,id);
+        a = a->getProx();
+    }
+}
+
+int Grafo::buscaIndice(int id){ // Passando um índice como Parâmetro, retorno o vértice Correspondente
+
+    int *aux = new int[this->numNos];
+    No* p = this->primeiro;
+
+    for (int i = 0; i < this->numNos; i++){ //Preencho o Vetor Auxiliar com os IDs de cada Nó
+        aux[i] = p->getId();
+        p = p->getProx();
+    }
+
+    for (int j = 0; j < this->numNos; j++){ //Procuro No vetor auxiliar o indice correspondente e retorno sua posição
+        if (aux[j] == id){
+            delete [] aux;
+            return j;
+        }
+    }
+
+    delete [] aux;
+    return -1; // Caso não encontre o id.
+}

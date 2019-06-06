@@ -11,7 +11,7 @@ private:
     bool ehDirecionado;
     No* primeiro;
 
-    void auxBuscaProfundidade();
+    void auxBuscaProfundidade(No* p,int* vetorDeVisitados, int id);
 
 public:
     Grafo();
@@ -28,12 +28,11 @@ public:
     No* buscaNo(int id);
     Aresta* buscaAresta(int no1, int no2);
 
-    int grauDoGrafo();
-    int ordemDoGrafo();
-
-    bool ehCompleto();
+    int grauDoGrafo(); // Falta Implementar
+    int ordemDoGrafo(); // Falta Implementar
 
     void buscaEmProfundidade();
+    int buscaIndice(int id);
     void buscaEmLargura();
 
     void insereNo(int id, float peso);
