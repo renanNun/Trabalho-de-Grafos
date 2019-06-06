@@ -94,3 +94,38 @@ void Grafo::insereNo(int id, float peso){
         this->numNos++;
     }
 }
+
+void Grafo::insereAresta(int no1,int no2,float peso){
+
+    if(!this->ehGrafoDirecionado()){
+
+        No* p = this->buscaNo(no1);
+        No* t = this->buscaNo(no2);
+        Aresta* a = new Aresta();
+        Aresta* b = new Aresta();
+
+        a->setPeso(peso);
+        b->setPeso(peso);
+    }
+
+    if(no1 == no2){
+        std::cout << "Não é possível criar self-loops!" << std::endl;
+        return -1;
+    } else {
+        if (this->buscaAresta(no1,no2) == NULL){
+            if (p != NULL && t != NULL){
+                p->insereAresta(no2,a,peso);
+                t->insereAresta(no1,b,peso);
+                p->aumentaGrau();
+                t->aumentaGrau();
+                this->numArestas++;
+            } else {
+                std::cout << "\nNós não encontrados!" << std::endl;
+            } else {
+                std::cout<< "Aresta já existe entre os Nós!" << std::endl;
+            }
+        }
+        std::cout << "Não é possível criar aresta em um Grafo direcionado" << std::endl;
+    }
+
+}
