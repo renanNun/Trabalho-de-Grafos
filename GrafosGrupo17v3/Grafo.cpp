@@ -170,3 +170,21 @@ void Grafo::insereAresta(int no1,int no2,float peso){
 
 }
 
+void Grafo::removeAresta(int no1,int no2){
+
+    if(!this->ehGrafoDirecionado()){
+
+        No* p = this->buscaNo(no1);
+        No* t = this->buscaNo(no2);
+
+        if (p == NULL && t == NULL){
+            std::cout<< "Nós inexistentes!" << std::endl;
+        } else {
+            if (this->buscaAresta(no1,no2) != NULL){
+                p->removeAresta(no2);
+                t->removeAresta(no1);
+            }
+            this->numArestas--;
+        }
+    }
+}
