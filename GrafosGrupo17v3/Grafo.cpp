@@ -248,3 +248,7 @@ int Grafo::buscaIndice(int id){ // Passando um índice como Parâmetro, retorno o 
     delete [] aux;
     return -1; // Caso não encontre o id.
 }
+
+void Grafo::buscaEmLargura(){
+
+}

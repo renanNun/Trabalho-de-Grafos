@@ -33,6 +33,7 @@ public:
 
     void buscaEmProfundidade();
     int buscaIndice(int id);
+
     void buscaEmLargura();
 
     void insereNo(int id, float peso);
