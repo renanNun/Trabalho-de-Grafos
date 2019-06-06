@@ -95,6 +95,46 @@ void Grafo::insereNo(int id, float peso){
     }
 }
 
+void Grafo::removeNo(int no){
+    No* p = this->primeiro;
+    No* aux = NULL;
+
+    if (p == NULL || this->buscaNo(no) == NULL){
+        std::cout<< "Nó inexistente!" << std::endl;
+        return -1;
+    }
+    else {
+
+        while(p != NULL){
+            if (this->buscaAresta(p->getId(),no) != NULL){
+                p->removeAresta(no);
+                this->numArestas--;
+            }
+            p = p->getProx();
+        }
+
+        p = this->primeiro;
+
+        while(p != NULL){
+            if(p->getId() == no){
+                break;
+            }
+            aux = p;
+            p = p->getProx();
+        }
+
+        if(aux == NULL){
+            this->primeiro = this->primeiro->getProx();
+            delete p;
+            this->numNos--;
+        } else {
+            aux->setProx(p->getProx());
+            delete p;
+            this->numNos--;
+        }
+    }
+}
+
 void Grafo::insereAresta(int no1,int no2,float peso){
 
     if(!this->ehGrafoDirecionado()){
@@ -129,3 +169,4 @@ void Grafo::insereAresta(int no1,int no2,float peso){
     }
 
 }
+
