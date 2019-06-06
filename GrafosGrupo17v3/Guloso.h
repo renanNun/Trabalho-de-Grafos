@@ -1,0 +1,6 @@
+#ifndef GULOSO_H_INCLUDED
+#define GULOSO_H_INCLUDED
+
+
+
+#endif // GULOSO_H_INCLUDED
