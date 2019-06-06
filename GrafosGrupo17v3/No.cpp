@@ -28,6 +28,14 @@ void No::setId(int id){
     this->id = id;
 }
 
+float No::getPeso(){
+    return this->peso;
+}
+
+void No::setPeso(float peso){
+    this->peso = peso;
+}
+
 int No::getGrau(){
     return this->grau;
 }

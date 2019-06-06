@@ -10,6 +10,7 @@ private:
     Aresta *primeiro; //Primeiro elemento de uma lista de arestas
     No* prox; //Ponteiro para o próximo No
     int grau;
+    float peso;
 
 public:
     No();
@@ -17,6 +18,9 @@ public:
 
     int getId();
     void setId();
+
+    float getPeso();
+    void setPeso(float peso);
 
     No* getProx();
     void setProx(No* p);
