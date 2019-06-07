@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Utils" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="Utils" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -43,6 +45,10 @@
 		<Unit filename="No.h" />
 		<Unit filename="Utils/Fila.cpp" />
 		<Unit filename="Utils/Fila.h" />
+		<Unit filename="Utils/ItemListaDeNos.cpp" />
+		<Unit filename="Utils/ItemListaDeNos.h" />
+		<Unit filename="Utils/ListaDeNos.cpp" />
+		<Unit filename="Utils/ListaDeNos.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

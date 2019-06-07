@@ -1,4 +1,7 @@
 #include "ItemListaDeNos.h"
+#include <iostream>
+
+using namespace std;
 
 ItemListaDeNos::ItemListaDeNos()
 {
