@@ -14,6 +14,7 @@ private:
 public:
     ListaDeNos();
     ~ListaDeNos();
+    int getLength();
     void adicionaNo(No* novoNo);
     void insereNo(int posicao, No* novoNo);
     ItemListaDeNos* getItem(int posicao);
