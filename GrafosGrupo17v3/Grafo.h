@@ -2,6 +2,7 @@
 #define GRAFO_H_INCLUDED
 
 #include "No.h"
+#include "Utils/fila.h"
 
 class Grafo{
 
@@ -31,7 +32,7 @@ public:
     int grauDoGrafo(); // Falta Implementar
     int ordemDoGrafo(); // Falta Implementar
 
-    void buscaEmProfundidade();
+    void buscaEmProfundidade(int id);
     int buscaIndice(int id);
 
     void buscaEmLargura();

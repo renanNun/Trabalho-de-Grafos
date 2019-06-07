@@ -18,6 +18,6 @@ public:
     void setProx(Aresta *p);
     float getPeso();
     void setPeso(float peso);
-}
+};
 
 #endif // ARESTA_H_INCLUDED

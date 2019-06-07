@@ -17,7 +17,7 @@ public:
     ~No();
 
     int getId();
-    void setId();
+    void setId(int id);
 
     float getPeso();
     void setPeso(float peso);

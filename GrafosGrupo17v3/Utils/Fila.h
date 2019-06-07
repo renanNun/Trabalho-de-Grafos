@@ -9,7 +9,7 @@ private:
     No* c;
     No* f;
 public:
-    Fila;
+    Fila();
     ~Fila();
     int getTopo();
     void enfilera(int id);

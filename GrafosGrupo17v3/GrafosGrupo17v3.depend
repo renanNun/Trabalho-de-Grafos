@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1514140574 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\main.cpp
+	<iostream>
+
+1559865666 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\aresta.cpp
+	"Aresta.h"
+	<iostream>
+
+1559865684 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\aresta.h
+
+1559865836 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\no.cpp
+	"No.h"
+	<iostream>
+
+1559865912 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\no.h
+	"Aresta.h"
+
+1559865941 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\fila.cpp
+	"Fila.h"
+	<iostream>
+
+1559865745 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\fila.h
+	"../No.h"
+

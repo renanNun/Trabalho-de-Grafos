@@ -37,7 +37,7 @@ void Fila::enfilera(int id){
     if(f == NULL){
         this->c = p;
     } else {
-        thos->f->setProx(p);
+        this->f->setProx(p);
     }
 
     this->f = p;
