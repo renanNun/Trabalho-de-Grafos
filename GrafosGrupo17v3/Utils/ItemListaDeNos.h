@@ -5,14 +5,15 @@
 class ItemListaDeNos
 {
 private:
-    No* item
-    ItemListaDeNos* anterior
-    ItemListaDeNos* proximo
-    int posicao
+    No* item;
+    ItemListaDeNos* anterior;
+    ItemListaDeNos* proximo;
+    int posicao;
 
 public:
-    ItemListaDeNos();
+    ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no);
     ~ItemListaDeNos();
+    int getPosicao();
 
 };
 

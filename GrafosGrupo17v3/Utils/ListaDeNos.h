@@ -6,9 +6,9 @@
 class ListaDeNos
 {
 private:
-    int length
-    ItemListaDeNos* primeiro
-    ItemListaDeNos* ultimo
+    int length;
+    ItemListaDeNos* primeiro;
+    ItemListaDeNos* ultimo;
 
 public:
     ListaDeNos();
