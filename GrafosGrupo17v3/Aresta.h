@@ -7,6 +7,7 @@ private:
     int id;
     float peso;
     Aresta* prox;
+    No* alvo;
 
 public:
     Aresta();
@@ -18,6 +19,8 @@ public:
     void setProx(Aresta *p);
     float getPeso();
     void setPeso(float peso);
+    No* getNoAlvo();
+    void setNoAlvo(No* noAlvo);
 };
 
 #endif // ARESTA_H_INCLUDED

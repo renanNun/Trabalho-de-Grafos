@@ -1,4 +1,5 @@
 #include "Aresta.h"
+#include "No.h"
 #include <iostream>
 
 Aresta::Aresta(){
@@ -15,6 +16,14 @@ int Aresta::getId(){
 
 void Aresta::setId(int id){
     this->id = id;
+}
+
+No* Aresta::getNoAlvo(){
+    return this->alvo;
+}
+
+void Aresta::setNoAlvo(No* noAlvo){
+    this->alvo = noAlvo;
 }
 
 Aresta* Aresta::getProx(){
