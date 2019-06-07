@@ -8,12 +8,6 @@ ItemListaDeNos::ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no
     this->anterior = ant;
     this->proximo = prox;
     this->item = no;
-    if(ant != nullptr){
-        posicao = ant->getPosicao();
-    }
-    else{
-        posicao = 0;
-    }
 }
 
 ItemListaDeNos::~ItemListaDeNos()
@@ -21,6 +15,27 @@ ItemListaDeNos::~ItemListaDeNos()
     //dtor
 }
 
-int ItemListaDeNos::getPosicao(){
-    return this->posicao;
+
+void ItemListaDeNos::setItem(No* novoItem){
+    this->item = novoItem;
+}
+
+No* ItemListaDeNos::getItem(){
+    return this->item;
+}
+
+void ItemListaDeNos::setAnterior(ItemListaDeNos* novoAnterior){
+    this->anterior = novoAnterior;
+}
+
+ItemListaDeNos* ItemListaDeNos::getAnterior(){
+    return this->anterior;
+}
+
+void ItemListaDeNos::setProximo(ItemListaDeNos* novoProximo){
+    this->proximo = novoProximo;
+}
+
+ItemListaDeNos* ItemListaDeNos::getProximo(){
+    return this->proximo;
 }
