@@ -4,17 +4,17 @@
 class Aresta{
 
 private:
-    int id;
-    float peso;
-    Aresta* prox;
+    int id; //O ID do Nó que uma aresta aponta
+    float peso; //O Peso que uma aresta carrega
+    Aresta* prox; //Ponteiro para a próxima Aresta
     No* alvo;
 
 public:
     Aresta();
     ~Aresta();
 
-    int getId();
-    void setId(int id);
+    int getId(); //Retorna o Id contido na aresta
+    void setId(int id); //Insere o Id uma aresta
     Aresta* getProx();
     void setProx(Aresta *p);
     float getPeso();
