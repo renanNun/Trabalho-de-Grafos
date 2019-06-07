@@ -2,6 +2,7 @@
 #define LISTADENOS_H
 
 #include "ItemListaDeNos.h"
+#include "../No.h"
 
 class ListaDeNos
 {
@@ -13,6 +14,10 @@ private:
 public:
     ListaDeNos();
     ~ListaDeNos();
+    void adicionaNo(No* novoNo);
+    void insereNo(int posicao, No* novoNo);
+    ItemListaDeNos* getItem(int posicao);
+    void apagaItem (ItemListaDeNos* apagado);
 
 };
 
