@@ -336,3 +336,33 @@ void Grafo::buscaEmLargura()
         }
     }
 }
+
+void Grafo::quickSort(int lista[]; int inicio, int fim){
+
+    int i,j, pivo, aux;
+    i = inicio;
+    j = fim-1;
+    pivo = lista[(inicio + fim)/2];
+
+    while (i <= j){
+
+        while (lista[i] > pivo &&  i < fim)
+            i++;
+
+        while (lista[j] < pivo && j > inicio)
+            j--;
+
+        if (i <= j){
+            lista[i] = lista[j];
+            lista[j] = aux;
+            i++;
+            j++;
+        }
+    }
+
+    if (j > inicio)
+        quickSort(lista,inicio,j+1);
+    if (i < fim)
+        quickSort(lista,i,fim);
+
+}

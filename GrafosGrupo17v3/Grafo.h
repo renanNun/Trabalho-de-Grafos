@@ -4,6 +4,7 @@
 #include "No.h"
 #include "Utils/fila.h"
 
+
 class Grafo{
 
 private:
@@ -41,6 +42,8 @@ public:
     void removeNo(int no);
     void insereAresta(int no1, int no2, float peso);
     void removeAresta(int no1,int no2);
+
+    void quickSort(int lista[]; int inicio, int fim);
 
 
 
