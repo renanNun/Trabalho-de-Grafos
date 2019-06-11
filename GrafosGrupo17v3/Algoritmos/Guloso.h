@@ -1,17 +1,35 @@
 #ifndef GULOSO_H_INCLUDED
 #define GULOSO_H_INCLUDED
+
 #include "../Grafo.h"
 
 class Guloso{
 
 private:
-    No* solucaoInicial;
+    No* sucConjDeVertices(Grafo *g){
 
-    void preencheSolucaoInicial(Grafo* g);
+    }
+
+    void preencheVetor(Grafo *g){
+
+    }
+
+    void atualizarVetor(No* escolhido){
+
+    }
+
+    void removeCandidato(No* no){
+
+    }
 
 public:
-    Guloso(Grafo *g);
-    ~Guloso();
+    Guloso(){
+        //Construtor
+    }
+    ~Guloso(){
+        //Destrutor
+    }
+    No* candidatos [];
 
 };
 

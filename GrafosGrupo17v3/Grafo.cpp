@@ -337,7 +337,7 @@ void Grafo::buscaEmLargura()
     }
 }
 
-void Grafo::quickSort(int lista[]; int inicio, int fim){
+void Grafo::quickSort(int lista[], int inicio, int fim){
 
     int i,j, pivo, aux;
     i = inicio;

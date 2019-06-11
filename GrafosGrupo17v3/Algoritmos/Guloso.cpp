@@ -21,5 +21,8 @@ void Guloso::preencheSolucaoInicial(Grafo *g){
         p = p->getProx();
         cont++;
     }
+}
+
+void Guloso::ordenaSolucao(){
 
 }

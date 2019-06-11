@@ -43,7 +43,7 @@ public:
     void insereAresta(int no1, int no2, float peso);
     void removeAresta(int no1,int no2);
 
-    void quickSort(int lista[]; int inicio, int fim);
+    void quickSort(int lista[], int inicio, int fim);
 
 
 

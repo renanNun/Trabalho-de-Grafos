@@ -18,13 +18,13 @@ void Aresta::setId(int id){
     this->id = id;
 }
 
-No* Aresta::getNoAlvo(){
+/*No* Aresta::getNoAlvo(){
     return this->alvo;
 }
 
 void Aresta::setNoAlvo(No* noAlvo){
     this->alvo = noAlvo;
-}
+}*/
 
 Aresta* Aresta::getProx(){
     return this->prox;
