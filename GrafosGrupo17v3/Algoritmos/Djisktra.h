@@ -8,10 +8,10 @@
 class Djisktra{
 
 private:
-     int* vertices = new int[g.getNumNos()]; //vertice é a mesma coisa que No
-     int* distancias = new int[g.getNumNos()];
-     int* predecessores = new int[g.getNumNos()];
-     int* abertos = new int[g.getNumNos()];
+     int* vertices; //vertice é a mesma coisa que No
+     int* distancias;
+     int* predecessores;
+     int* abertos;
 
     void algoritmoDjisktra(Grafo &g, int noIncial)
     {
@@ -94,6 +94,7 @@ private:
 
 public:
     Djisktra(Grafo& g, int noInicial){
+
         vertices = new int[g.getNumNos()]; //vertice é a mesma coisa que No
         distancias = new int[g.getNumNos()];
         predecessores = new int[g.getNumNos()];
