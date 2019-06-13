@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Algoritmos/Guloso.h" />
 		<Unit filename="Aresta.cpp" />
 		<Unit filename="Aresta.h" />
 		<Unit filename="Grafo.cpp" />

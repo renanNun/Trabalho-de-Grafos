@@ -5,14 +5,15 @@
 #include <vector>
 #include <algorithm>
 #include "Grafo.h"
+#include "Guloso.h"
 
 
 class GulosoRandomizado{
 
 public:
-    //Guloso Randomizado
+    int gerarInteiroAleatorioEntre(int limiteInferior, int limiteSuperior);
 private:
-    //Guloso Randomizado
+
 
 };
 
