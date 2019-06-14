@@ -7,6 +7,7 @@ private:
     int id; //O ID do Nó que uma aresta aponta
     float peso; //O Peso que uma aresta carrega
     Aresta* prox; //Ponteiro para a próxima Aresta
+    bool visitado;
     //No* alvo;
 
 public:
@@ -19,6 +20,8 @@ public:
     void setProx(Aresta *p);
     float getPeso();
     void setPeso(float peso);
+    bool getVistado();
+    void setVisitado(bool x);
  //   No* getNoAlvo();
 //    void setNoAlvo(No* noAlvo);
 };

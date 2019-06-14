@@ -41,3 +41,11 @@ float Aresta::getPeso(){
 void Aresta::setPeso(float peso){
     this->peso = peso;
 }
+
+bool Aresta::getVistado(){
+    return this->visitado;
+}
+
+void Aresta::setVisitado(bool x){
+    this->visitado = x;
+}

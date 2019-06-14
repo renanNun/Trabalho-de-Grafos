@@ -13,6 +13,8 @@ private:
     bool ehDirecionado;
     No* primeiro;
 
+    int numComponentesConexas;
+
     void auxBuscaProfundidade(No* p,int* vetorDeVisitados, int id);
 
 public:
@@ -44,6 +46,8 @@ public:
     void removeAresta(int no1,int no2);
 
     void quickSort(int lista[], int inicio, int fim);
+
+    int getNumComponentesConexas();
 
 
 
