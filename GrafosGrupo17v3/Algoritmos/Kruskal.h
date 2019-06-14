@@ -2,7 +2,7 @@
 #define KRUSKAL_H_INCLUDED
 
 #include "../Grafo.h"
-
+#include "ArestaSolucao.h"
 
 class Kruskal{
 
