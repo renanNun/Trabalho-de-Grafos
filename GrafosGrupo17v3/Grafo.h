@@ -35,7 +35,7 @@ public:
     int ordemDoGrafo(); // Falta Implementar
 
     void buscaEmProfundidade(int id);
-    int buscaIndice(int id);
+    int buscaIndice(int id); // Passando um índice como Parâmetro, retorno o vértice Correspondente
 
     void buscaEmLargura();
 

@@ -19,6 +19,10 @@ private:
         int* arvores = new int[g.getNumNos()];
         ListaDeArestas* lista = new ListaDeArestas();
 
+        for(int i = 0; i < g.getNumNos(); i++){
+            arvores[i] = g.buscaIndice(i);
+        }
+
     }
 
 
