@@ -12,9 +12,9 @@ public:
     ListaDeArestas();
     ~ListaDeArestas();
 
-    ListaDeArestas* getPrimeiro();
+    Aresta* getPrimeiro();
     void insereAresta(int id,int id2, float peso);
-    Aresta* removeAresta(int id,id2);
+    Aresta* removeAresta(int id,int id2);
     int getTamanho();
     bool vazia();
     void imprime();

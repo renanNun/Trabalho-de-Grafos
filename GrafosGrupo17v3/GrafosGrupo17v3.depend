@@ -2,7 +2,7 @@
 1514140574 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\main.cpp
 	<iostream>
 
-1560271529 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\aresta.cpp
+1560518445 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\aresta.cpp
 	"Aresta.h"
 	"No.h"
 	<iostream>
@@ -45,4 +45,10 @@
 1559923928 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadenos.h
 	"ItemListaDeNos.h"
 	"../No.h"
+
+1560520338 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.cpp
+	"ListaDeArestas.h"
+
+1560520039 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.h
+	"../Aresta.h"
 
