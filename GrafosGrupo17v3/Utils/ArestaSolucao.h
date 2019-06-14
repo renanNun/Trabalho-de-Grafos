@@ -26,16 +26,16 @@ public:
         return this->No1;
     }
 
-    void setNo1(int id, float peso){
-
+    void setNo1(int id){
+        this->No1 = id;
     }
 
     int getNo2(){
         return this->No2;
     }
 
-    void setNo2(int id, float peso){
-
+    void setNo2(int id){
+        this->No2 = id;
     }
 
     float getPeso(){
@@ -43,7 +43,7 @@ public:
     }
 
     void setPeso(float peso){
-
+        this->peso = peso;
     }
 
     bool getVistado(){
@@ -51,7 +51,7 @@ public:
     }
 
     void setVistado(bool x){
-
+        this->visitado = x;
     }
 
     ArestaSolucao* getProx(){
@@ -60,7 +60,7 @@ public:
 
 
     void setProx(ArestaSolucao* p){
-
+        this->prox = p;
     }
 
 };

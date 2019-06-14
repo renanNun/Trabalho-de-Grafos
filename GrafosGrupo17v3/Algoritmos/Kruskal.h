@@ -2,7 +2,7 @@
 #define KRUSKAL_H_INCLUDED
 
 #include "../Grafo.h"
-#include "ArestaSolucao.h"
+#include "ListaDeArestas.h"
 
 class Kruskal{
 
@@ -12,11 +12,12 @@ private:
     void algoritmoKruskal(Grafo& g){
         numComponentesConexas = 0;
         No* p = g.getPrimeiroNo();
-        Aresta* a;
+        ArestaSolucao* a;
 
         Grafo* grafoSolucao = new Grafo;
 
         int* arvores = new int[g.getNumNos()];
+        ListaDeArestas* lista = new ListaDeArestas();
 
     }
 

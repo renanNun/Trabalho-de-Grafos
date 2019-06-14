@@ -1,23 +1,24 @@
 #ifndef LISTADEARESTAS_H_INCLUDED
 #define LISTADEARESTAS_H_INCLUDED
 
-#include "../Aresta.h"
+#include "ArestaSolucao.h"
+
+/*** LISTA DE ARESTAS SOLUÇÃO PARA A RESOLUÇÃO DO ALGORITMO DE KRUSKAL ***/
 
 class ListaDeArestas{
 
 private:
-    Aresta* primeiro;
+    ArestaSolucao* primeiro;
     int tamanho;
 public:
     ListaDeArestas();
     ~ListaDeArestas();
 
-    Aresta* getPrimeiro();
+    ArestaSolucao* getPrimeiro();
     void insereAresta(int id,int id2, float peso);
-    Aresta* removeAresta(int id,int id2);
+    ArestaSolucao* removeAresta(int id,int id2);
     int getTamanho();
     bool vazia();
-    void imprime();
 
 };
 

@@ -8,24 +8,59 @@ ListaDeArestas::ListaDeArestas(){
 }
 
 ListaDeArestas::~ListaDeArestas(){
-    Aresta* a = this->primeiro;
+    ArestaSolucao* a = this->primeiro;
 
     while (a != nullptr){
-        Aresta* aux = a->getProx();
+        ArestaSolucao* aux = a->getProx();
         delete a;
         a = aux;
     }
 }
 
-Aresta* ListaDeArestas::getPrimeiro(){
+ArestaSolucao* ListaDeArestas::getPrimeiro(){
     return this->primeiro;
 }
 
 void ListaDeArestas::insereAresta(int id,int id2, float peso){
+    ArestaSolucao* p = this->primeiro;
+    ArestaSolucao* a = new ArestaSolucao();
 
+    a->setNo1(id);
+    a->setNo2(id2);
+    a->setPeso(peso);
+
+    if(p == nullptr){
+        this->primeiro = a;
+        a->setProx(nullptr);
+        tamanho++;
+    } else {
+        this->primeiro = a;
+        a->setProx(p);
+        tamanho++;
+    }
 }
 
-Aresta* ListaDeArestas::removeAresta(int id,int id2){
+ArestaSolucao* ListaDeArestas::removeAresta(int id,int id2){
+    ArestaSolucao* p = this->primeiro;
+    ArestaSolucao* aux = nullptr;
+
+    while(p!=nullptr){
+
+        if((p->getNo1() == id && p->getNo2() == id2) || (p->getNo1() == id2 && p->getNo2() == id)){
+                break;
+           }
+        aux = p;
+        p = p->getProx();
+    }
+
+    if(p != nullptr){
+
+        aux->setProx(p->getProx());
+
+        delete p;
+        tamanho--;
+    }
+
 
 }
 
@@ -39,7 +74,4 @@ bool ListaDeArestas::vazia(){
     } else{
         return false;
     }
-}
-void ListaDeArestas::imprime(){
-
 }
