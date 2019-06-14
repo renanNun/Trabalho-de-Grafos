@@ -76,3 +76,14 @@ bool ListaDeArestas::vazia(){
     }
 }
 
+ArestaSolucao* ListaDeArestas::removePrimeiraAresta(){
+
+    ArestaSolucao* p = this->primeiro;
+
+    if(p!= nullptr){
+        this->primeiro = p->getProx();
+        delete p;
+        tamanho--;
+    }
+
+}

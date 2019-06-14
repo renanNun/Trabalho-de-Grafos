@@ -3,7 +3,7 @@
 
 #include "ArestaSolucao.h"
 
-/*** LISTA DE ARESTAS SOLU플O PARA A RESOLU플O DO ALGORITMO DE KRUSKAL ***/
+/*** LISTA DE ARESTAS SOLU플O PARA A RESOLU플O DO ALGORITMO DE KRUSKAL, PRIM ***/
 
 class ListaDeArestas{
 
@@ -17,6 +17,7 @@ public:
     ArestaSolucao* getPrimeiro();
     void insereAresta(int id,int id2, float peso);
     ArestaSolucao* removeAresta(int id,int id2);
+    ArestaSolucao* removePrimeiraAresta();
     int getTamanho();
     bool vazia();
 

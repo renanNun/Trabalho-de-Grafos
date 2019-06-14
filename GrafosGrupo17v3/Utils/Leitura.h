@@ -15,6 +15,7 @@ public:
 
     void imprimeGrafo(Grafo& g,FILE* arquivo){
         No* p = g.getPrimeiroNo();
+        std::fprintf(arquivo, "Solução impressa da forma id, peso\n");
         std::fprintf(arquivo, "LISTA DE ADJACENCIAS: \n");
 
         while(p != NULL){
@@ -39,14 +40,13 @@ public:
     }
 
     void imprimeKruskal(ListaDeArestas& lista,FILE* arquivo){
-        Aresta* a = lista.getPrimeiro();
-
+        ArestaSolucao* a = lista.getPrimeiro();
+        std::fprintf(arquivo, "Solução impressa da forma id1, id2 e peso\n");
         std::fprintf(arquivo, "SOLUCAO KRUSKAL: \n");
 
         while(a != nullptr){
 
-            std::fprintf(arquivo, // Implementar aqui a lista
-                         );
+            std::fprintf(arquivo,"[%d] - [%d] // %f",a->getNo1(),a->getNo2(),a->getPeso());
             a = a->getProx();
 
         }
