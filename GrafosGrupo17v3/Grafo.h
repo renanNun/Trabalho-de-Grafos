@@ -46,6 +46,9 @@ public:
 
     void quickSort(int lista[], int inicio, int fim);
 
+    /* Funções úteis para os algoritmos de Djisktra, Floyd, Prim e Kruskal */
+    Grafo* copiaGrafo();
+
 
 
 };

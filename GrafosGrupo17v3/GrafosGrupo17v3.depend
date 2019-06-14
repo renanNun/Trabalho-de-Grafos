@@ -23,11 +23,11 @@
 1559865745 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\fila.h
 	"../No.h"
 
-1560271551 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\grafo.cpp
+1560529595 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\grafo.cpp
 	"Grafo.h"
 	<iostream>
 
-1560524215 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\grafo.h
+1560529601 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\grafo.h
 	"No.h"
 	"Utils/fila.h"
 
@@ -46,10 +46,10 @@
 	"ItemListaDeNos.h"
 	"../No.h"
 
-1560522886 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.cpp
+1560530072 source:c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.cpp
 	"ListaDeArestas.h"
 
-1560522345 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.h
+1560530078 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.h
 	"ArestaSolucao.h"
 
 1560521950 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\arestasolucao.h

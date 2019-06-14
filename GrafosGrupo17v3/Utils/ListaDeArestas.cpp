@@ -75,3 +75,4 @@ bool ListaDeArestas::vazia(){
         return false;
     }
 }
+

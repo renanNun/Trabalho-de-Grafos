@@ -366,3 +366,27 @@ void Grafo::quickSort(int lista[], int inicio, int fim){
         quickSort(lista,i,fim);
 
 }
+
+/* Funções para implementação dos algoritmos */
+
+Grafo* Grafo::copiaGrafo(){
+
+    No* p = this->primeiro;
+    Aresta* a;
+    Grafo* grafoCopiado;
+
+    while( p != nullptr){
+        a = p->getAresta();
+        grafoCopiado->insereNo(p->getId(),p->getPeso());
+
+        while(a != nullptr){
+            grafoCopiado->insereNo(a->getId(),buscaNo(a->getId())->getPeso());
+            grafoCopiado->insereAresta(a->getId(),a->getId(),a->getPeso());
+            a = a->getProx();
+        }
+
+        p = p->getProx();
+    }
+
+    return grafoCopiado;
+}
