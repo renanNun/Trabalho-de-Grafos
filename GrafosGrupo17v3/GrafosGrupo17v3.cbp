@@ -34,17 +34,25 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Algoritmos/Djisktra.h" />
+		<Unit filename="Algoritmos/Floyd.h" />
 		<Unit filename="Algoritmos/Guloso.h" />
+		<Unit filename="Algoritmos/Kruskal.h" />
+		<Unit filename="Algoritmos/Prim.h" />
 		<Unit filename="Aresta.cpp" />
 		<Unit filename="Aresta.h" />
 		<Unit filename="Grafo.cpp" />
 		<Unit filename="Grafo.h" />
 		<Unit filename="No.cpp" />
 		<Unit filename="No.h" />
+		<Unit filename="Utils/ArestaSolucao.h" />
 		<Unit filename="Utils/Fila.cpp" />
 		<Unit filename="Utils/Fila.h" />
 		<Unit filename="Utils/ItemListaDeNos.cpp" />
 		<Unit filename="Utils/ItemListaDeNos.h" />
+		<Unit filename="Utils/Leitura.h" />
+		<Unit filename="Utils/ListaDeArestas.cpp" />
+		<Unit filename="Utils/ListaDeArestas.h" />
 		<Unit filename="Utils/ListaDeNos.cpp" />
 		<Unit filename="Utils/ListaDeNos.h" />
 		<Unit filename="main.cpp" />
