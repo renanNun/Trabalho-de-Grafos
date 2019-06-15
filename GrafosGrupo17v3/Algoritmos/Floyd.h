@@ -2,16 +2,28 @@
 #define FLOYD_H_INCLUDED
 
 #include "../Grafo.h"
-#include "ListaDeArestas.h"
 
 class Floyd{
 
 private:
+    int n;
+    int **A;
+    int **B;
+
+
+    void caminhosMinimos(){};
+    void mostrarCaminhosMinimos(){};
+    void mostrarMatrizDeCustos(){};
 
 public:
-    Floyd();
-    ~Floyd();
+    Floyd(Grafo& g){
+        this->n = g.getNumNos();
+        A = new int*[n+1];
+        B = new int*[n+1];
 
+
+    };
+    ~Floyd(){};
 
 };
 
