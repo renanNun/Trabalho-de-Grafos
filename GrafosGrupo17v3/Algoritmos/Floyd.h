@@ -1,8 +1,18 @@
 #ifndef FLOYD_H_INCLUDED
 #define FLOYD_H_INCLUDED
 
+#include "../Grafo.h"
+#include "ListaDeArestas.h"
+
 class Floyd{
-    //Como implementar isso de forma genérica ou aplicar ao problema de clusterização capacitada?
+
+private:
+
+public:
+    Floyd();
+    ~Floyd();
+
+
 };
 
 
