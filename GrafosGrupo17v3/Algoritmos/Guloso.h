@@ -6,7 +6,30 @@
 class Guloso{
 
 private:
-    No* sucConjDeVertices(Grafo *g){
+
+    void trocar(ItemListaDeNos* a, ItemListaDeNos* b){
+        No* aux = a->getItem();
+        a->setItem(b->getItem());
+        b->setItem(aux);
+    }
+
+    int particaoPesoDoNo(ListaDeNos* arr, int low, int high)
+    {
+        int pivot = arr->getItem(high)->getItem()->getPeso();
+        int i = low - 1;
+
+        for(int j = low; j <= high - 1; j++)
+        {
+
+        }
+    }
+
+    void organizaPorPesoDoNo(){
+        if(listaDeCanditatos == nullptr){
+            std::cout << "Lista de Candidatos vazia, portanto organizada" << endl;
+            return;
+        }
+
 
     }
 
@@ -25,12 +48,19 @@ private:
     ListaDeNos* listaDeCanditatos;
 
 public:
-    Guloso(int nClusters, Grafo* g, int L, int U){
+    Guloso(int nClusters, Grafo* g, int L, int U, float alpha){
         listaDeCanditatos = new ListaDeNos();
         clusters = new ListaDeNos*[nClusters];
-        for(int i = 0, i<nClusters, i++){
+        for(int i = 0; i<nClusters; i++){
             clusters[i] = new ListaDeNos();
         }
+
+        No* percorreNosDoGrafo = g->primeiro;
+        while(percorreNosDoGrafo->getProx() != nullptr){
+            listaDeCanditatos.adicionaNo(percorreNosDoGrafo);
+            percorreNosDoGrafo = percorreNosDoGrafo->getProx();
+        }
+
 
         //Construtor
     }

@@ -2,7 +2,7 @@
 #define LISTADENOS_H
 
 #include "ItemListaDeNos.h"
-#include "../No.h"
+#include "No.h"
 
 class ListaDeNos
 {

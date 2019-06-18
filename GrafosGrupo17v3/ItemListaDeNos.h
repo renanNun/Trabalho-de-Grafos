@@ -1,7 +1,7 @@
 #ifndef ITEMLISTADENOS_H
 #define ITEMLISTADENOS_H
 
-#include "../No.h"
+#include "No.h"
 
 class ItemListaDeNos
 {
