@@ -35,7 +35,16 @@ private:
             return;
         }
 
+        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
+    }
 
+    void quickSortPorPesoDoNo(ListaDeNos* arr, int low, int high){
+        if(low < high){
+            int pi = partition(arr, low, high);
+
+            quickSortPorPesoDoNo(arr, low, pi - 1);
+            quickSortPorPesoDoNo(arr, pi+1, high);
+        }
     }
 
     void preencheVetor(Grafo *g){
@@ -64,6 +73,10 @@ public:
         while(percorreNosDoGrafo->getProx() != nullptr){
             listaDeCanditatos.adicionaNo(percorreNosDoGrafo);
             percorreNosDoGrafo = percorreNosDoGrafo->getProx();
+        }
+
+        for(int i = 0; i<nClusters; i++){
+            clusters[i]->adicionaNo()
         }
 
 

@@ -8,7 +8,7 @@ ItemListaDeNos::ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no
     this->anterior = ant;
     this->proximo = prox;
     this->item = no;
-    this->pontosDasArestasNoCluster = 0;
+    this->valorTotalDasArestasNoCluster = 0;
 }
 
 ItemListaDeNos::~ItemListaDeNos()

@@ -1,6 +1,8 @@
 #include "ListaDeNos.h"
 #include <iostream>
 
+#include "../No.h"
+
 using namespace std;
 
 ListaDeNos::ListaDeNos()
@@ -58,6 +60,35 @@ void ListaDeNos::insereNo(int posicao, No* novoNo){
     }
 }
 
+void ListaDeNos::apagaItem(ItemListaDeNos* apagado){
+    ItemListaDeNos* anterior = apagado->getAnterior();
+    ItemListaDeNos* proximo = apagado->getProximo();
+    if(proximo == nullptr && anterior == nullptr){
+        primeiro = nullptr;
+        ultimo = nullptr;
+        this->length = 0;
+        delete apagado;
+    }
+    else if(proximo == nullptr){
+        anterior->setProximo(nullptr);
+        ultimo = anterior;
+        this->length = this->length - 1;
+        delete apagado;
+    }
+    else if (anterior == nullptr){
+        proximo->setAnterior(nullptr);
+        primeiro = proximo;
+        this->length = this->length - 1;
+        delete apagado;
+    }
+    else {
+        proximo->setAnterior(anterior);
+        anterior->setProximo(proximo);
+        this->length = this->length - 1;
+        delete apagado;
+    }
+}
+
 void ListaDeNos::setPeso(int novoPeso){
     this->peso = novoPeso;
 }
@@ -68,4 +99,11 @@ void ListaDeNos::addPeso(int adicionado){
 
 int ListaDeNos::getPeso(){
     return this->peso;
+}
+
+No* ListaDeNos::popNo(int index){
+    ItemListaDeNos* itemAtual = this->getItem(index);
+    No* noASerRetornado = itemAtual->getItem();
+    this->apagaItem(itemAtual);
+    return noASerRetornado;
 }

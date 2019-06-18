@@ -23,6 +23,7 @@ public:
     void setPeso(int novoPeso);
     void addPeso(int adicionado);
     int getPeso();
+    No* popNo(int index);
 };
 
 #endif // LISTADENOS_H
