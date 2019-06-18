@@ -58,4 +58,14 @@ void ListaDeNos::insereNo(int posicao, No* novoNo){
     }
 }
 
+void ListaDeNos::setPeso(int novoPeso){
+    this->peso = novoPeso;
+}
 
+void ListaDeNos::addPeso(int adicionado){
+    this->peso = this->peso + adicionado;
+}
+
+int ListaDeNos::getPeso(){
+    return this->peso;
+}

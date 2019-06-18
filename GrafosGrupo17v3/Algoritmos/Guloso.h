@@ -21,15 +21,22 @@ private:
     void removeCandidato(No* no){
 
     }
+    ListaDeNos** clusters;
+    ListaDeNos* listaDeCanditatos;
 
 public:
-    Guloso(){
+    Guloso(int nClusters, Grafo* g, int L, int U){
+        listaDeCanditatos = new ListaDeNos();
+        clusters = new ListaDeNos*[nClusters];
+        for(int i = 0, i<nClusters, i++){
+            clusters[i] = new ListaDeNos();
+        }
+
         //Construtor
     }
     ~Guloso(){
         //Destrutor
     }
-    No* candidatos [];
 
 };
 

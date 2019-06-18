@@ -10,6 +10,7 @@ private:
     int length;
     ItemListaDeNos* primeiro;
     ItemListaDeNos* ultimo;
+    int peso;
 
 public:
     ListaDeNos();
@@ -19,7 +20,9 @@ public:
     void insereNo(int posicao, No* novoNo);
     ItemListaDeNos* getItem(int posicao);
     void apagaItem (ItemListaDeNos* apagado);
-
+    void setPeso(int novoPeso);
+    void addPeso(int adicionado);
+    int getPeso();
 };
 
 #endif // LISTADENOS_H

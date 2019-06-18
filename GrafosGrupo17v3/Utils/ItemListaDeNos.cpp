@@ -8,6 +8,7 @@ ItemListaDeNos::ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no
     this->anterior = ant;
     this->proximo = prox;
     this->item = no;
+    this->pontosDasArestasNoCluster = 0;
 }
 
 ItemListaDeNos::~ItemListaDeNos()
@@ -38,4 +39,12 @@ void ItemListaDeNos::setProximo(ItemListaDeNos* novoProximo){
 
 ItemListaDeNos* ItemListaDeNos::getProximo(){
     return this->proximo;
+}
+
+void ItemListaDeNos::setValorTotalDasArestasNoCluster(int novoValor){
+    this->valorTotalDasArestasNoCluster = novoValor;
+}
+
+int ItemListaDeNos::getValorTotalDasArestasNoCluster(){
+    return this->valorTotalDasArestasNoCluster;
 }

@@ -9,6 +9,7 @@ private:
     No* item;
     ItemListaDeNos* anterior;
     ItemListaDeNos* proximo;
+    int valorTotalDasArestasNoCluster;
 
 public:
     ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no);
@@ -19,6 +20,8 @@ public:
     ItemListaDeNos* getAnterior();
     void setProximo(ItemListaDeNos* novoProximo);
     ItemListaDeNos* getProximo();
+    void setValorTotalDasArestasNoCluster(int novoValor);
+    int getValorTotalDasArestasNoCluster();
 
 
 };
