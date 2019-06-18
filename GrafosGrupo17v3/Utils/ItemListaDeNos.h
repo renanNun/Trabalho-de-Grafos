@@ -22,6 +22,7 @@ public:
     ItemListaDeNos* getProximo();
     void setValorTotalDasArestasNoCluster(int novoValor);
     int getValorTotalDasArestasNoCluster();
+    No* popNo (int indice);
 
 
 };

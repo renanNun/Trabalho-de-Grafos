@@ -55,3 +55,44 @@
 1560521950 c:\users\renan\documents\github\trabalho-de-grafos\grafosgrupo17v3\utils\arestasolucao.h
 	"../No.h"
 
+1560864193 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\aresta.cpp
+	"Aresta.h"
+	"No.h"
+	<iostream>
+
+1560864193 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\aresta.h
+
+1560007325 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\no.h
+	"Aresta.h"
+
+1560864193 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\grafo.cpp
+	"Grafo.h"
+	<iostream>
+
+1560864193 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\grafo.h
+	"No.h"
+	"Utils/fila.h"
+
+1559874044 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\utils\fila.h
+	"../No.h"
+
+1559856755 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\main.cpp
+	<iostream>
+
+1559858473 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\no.cpp
+	"No.h"
+	<iostream>
+
+1559914951 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\utils\fila.cpp
+	"Fila.h"
+	<iostream>
+
+1560864193 source:d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.cpp
+	"ListaDeArestas.h"
+
+1560864193 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\utils\listadearestas.h
+	"ArestaSolucao.h"
+
+1560864193 d:\projetos\grafos\trabalho-grafos-repo-renan\nova pasta\trabalho-de-grafos\grafosgrupo17v3\utils\arestasolucao.h
+	"../No.h"
+

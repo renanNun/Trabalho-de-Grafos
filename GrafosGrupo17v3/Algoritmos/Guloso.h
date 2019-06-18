@@ -2,8 +2,8 @@
 #define GULOSO_H_INCLUDED
 
 #include "../Grafo.h"
-#include "ListaDeNos.h"
-#include "ItemListaDeNos.h"
+#include "../Utils/ListaDeNos.h"
+#include "../Utils/ItemListaDeNos.h"
 
 class Guloso{
 
