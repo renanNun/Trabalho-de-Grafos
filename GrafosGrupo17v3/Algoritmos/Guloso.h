@@ -76,7 +76,7 @@ public:
         }
 
         for(int i = 0; i<nClusters; i++){
-            clusters[i]->adicionaNo()
+            clusters[i]->popNo(listaDeCanditatos->ultimo);
         }
 
 
