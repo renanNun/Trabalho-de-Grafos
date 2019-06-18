@@ -2,6 +2,8 @@
 #define GULOSO_H_INCLUDED
 
 #include "../Grafo.h"
+#include "ListaDeNos.h"
+#include "ItemListaDeNos.h"
 
 class Guloso{
 
@@ -13,15 +15,18 @@ private:
         b->setItem(aux);
     }
 
-    int particaoPesoDoNo(ListaDeNos* arr, int low, int high)
-    {
+    int particaoPesoDoNo(ListaDeNos* arr, int low, int high){
+
         int pivot = arr->getItem(high)->getItem()->getPeso();
-        int i = low - 1;
-
-        for(int j = low; j <= high - 1; j++)
-        {
-
+        int i = (low - 1);
+        for(int j = low; j <= high - 1; j++){
+            if (arr->getItem(j)->getItem()->getPeso() <= pivot){
+                i++;
+                trocar(arr->getItem(i),arr->getItem(j));
+            }
         }
+    trocar(arr->getItem(i + 1), arr->getItem(high));
+    return (i+1);
     }
 
     void organizaPorPesoDoNo(){
