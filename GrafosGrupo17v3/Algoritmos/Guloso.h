@@ -17,10 +17,10 @@ private:
 
     int particaoPesoDoNo(ListaDeNos* arr, int low, int high){
 
-        int pivot = arr->getItem(high)->getItem()->getPeso();
+        int pivot = arr->getNo(high)->getPeso();
         int i = (low - 1);
         for(int j = low; j <= high - 1; j++){
-            if (arr->getItem(j)->getItem()->getPeso() <= pivot){
+            if (arr->getNo(j)->getPeso() <= pivot){
                 i++;
                 trocar(arr->getItem(i),arr->getItem(j));
             }
@@ -67,7 +67,7 @@ public:
         No* percorreNosDoGrafo = g->primeiro;
         while(percorreNosDoGrafo->getProx() != nullptr){
             //Aqui vai ser colocado como se fosse o teste pro cluster 0 pois fica mais facil do que mudar logo a frente
-            listaDeCanditatos.adicionaNo(percorreNosDoGrafo, 0);
+            listaDeCanditatos->adicionaNo(percorreNosDoGrafo, 0);
             percorreNosDoGrafo = percorreNosDoGrafo->getProx();
         }
 

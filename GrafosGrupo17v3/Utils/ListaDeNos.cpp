@@ -76,7 +76,7 @@ ItemListaDeNos* ListaDeNos::getItem(int posicao){
     }
     else {
         ItemListaDeNos* percorredor = primeiro;
-        for(int i = 0; i<posicao, i++){
+        for(int i = 0; i<posicao; i++){
             percorredor = percorredor ->getProximo();
         }
         return percorredor;
