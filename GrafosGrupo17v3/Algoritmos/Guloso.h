@@ -11,16 +11,21 @@ private:
 
     void trocar(ItemListaDeNos* a, ItemListaDeNos* b){
         No* aux = a->getItem();
+        float auxPontos = a->addPontuacaoNoCluster();
+        int auxCluster = a->getClusterAtualSendoTestado();
         a->setItem(b->getItem());
+        a->setPontuacaoNoCluster(b->getPontuacaoNoCluster());
+        a->setClusterAtualSendoTestado(b->getClusterAtualSendoTestado());
         b->setItem(aux);
+        b->setPontuacaoNoCluster(auxPontos);
+        b->setClusterAtualSendoTestado(auxCluster);
     }
 
     int particaoPesoDoNo(ListaDeNos* arr, int low, int high){
-
-        int pivot = arr->getNo(high)->getPeso();
+        float pivot = arr->getNo(high)->getPeso();
         int i = (low - 1);
         for(int j = low; j <= high - 1; j++){
-            if (arr->getNo(j)->getPeso() <= pivot){
+            if(arr->getNo(j)->getPeso() <= pivot){
                 i++;
                 trocar(arr->getItem(i),arr->getItem(j));
             }
@@ -30,19 +35,34 @@ private:
     }
 
     int particaoPontosNaSolucao(ListaDeNos* arr, int low, int high){
-
-
+        float pivot = arr->getItem(high)->getPontuacaoNoCluster();
+        int i = (low - 1);
+        for(int j = low; j <= high - 1; j++){
+            if(arr->getItem(j)->getPontuacaoNoCluster() <= pivot){
+                i++;
+                trocar(arr->getItem(i),arr->getItem(j));
+            }
+        }
+    trocar(arr->getItem(i + 1), arr->getItem(high));
+    return (i+1);
     }
 
     void organizaPorPesoDoNo(){
         if(listaDeCanditatos == nullptr){
-            std::cout << "Lista de Candidatos vazia, portanto organizada" << endl;
+            std::cout << "Lista de Candidatos vazia, portanto organizada" << std::endl;
         }
         else {
             quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
         }
+    }
 
-
+    void organizaPorPontosNaSolucao(){
+        if(listaDeCanditatos == nullptr){
+            std::cout << "Lista de Candidatos vazia, portanto organizada" << std::endl;
+        }
+        else {
+            quickSortPorPontosNaSolucao(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
+        }
     }
 
     void quickSortPorPesoDoNo(ListaDeNos* arr, int low, int high){
@@ -54,8 +74,26 @@ private:
         }
     }
 
-    int testePontosGeradosParaSolucao(ItemListaDeNos* itemTestado){
+    void quickSortPorPontosNaSolucao(ListaDeNos* arr, int low, int high){
+        if(low < high){
+            int pi = particaoPontosNaSolucao(arr, low, high);
 
+            quickSortPorPontosNaSolucao(arr, low, pi - 1);
+            quickSortPorPontosNaSolucao(arr, pi+1, high);
+
+        }
+    }
+
+    void somaPossiveisPontosAosItems(No* noAdicionadoASolucao, int clusterDesignado){
+        Aresta* arestaPercorredoraDaListaDeAdjacencias = noAdicionadoASolucao->getAresta();
+        while(arestaPercorredoraDaListaDeAdjacencias->getProx()!= nullptr){
+            for(int i = 0; i<listaDeCanditatos; i++){
+                ItemListaDeNos* aux = listaDeCanditatos->getItem(i);
+                if(aux->getItem()->getId() != arestaPercorredoraDaListaDeAdjacencias->getId()){
+                    aux->addPontuacaoNoCluster(arestaPercorredoraDaListaDeAdjacencias->getPeso());
+                }
+            }
+        }
     }
 
     ListaDeNos** clusters;
@@ -107,18 +145,6 @@ public:
     }
     ~Guloso(){
         //Destrutor
-    }
-
-    void somaPossiveisPontosAosItems(No* noAdicionadoASolucao, int clusterDesignado){
-        Aresta* arestaPercorredoraDaListaDeAdjacencias = noAdicionadoASolucao->getAresta();
-        while(arestaPercorredoraDaListaDeAdjacencias->getProx()!= nullptr){
-            for(int i = 0; i<listaDeCanditatos; i++){
-                ItemListaDeNos* aux = listaDeCanditatos->getItem(i);
-                if(aux->getItem()->getId() != arestaPercorredoraDaListaDeAdjacencias->getId()){
-                    aux->addPontuacaoNoCluster(arestaPercorredoraDaListaDeAdjacencias->getPeso());
-                }
-            }
-        }
     }
 
 };
