@@ -9,6 +9,7 @@ ItemListaDeNos::ItemListaDeNos(ItemListaDeNos* ant, ItemListaDeNos* prox, No* no
     this->proximo = prox;
     this->item = no;
     this->valorTotalDasArestasNoCluster = 0;
+    this->clusterAtualSendoTestado = -1;
 }
 
 ItemListaDeNos::~ItemListaDeNos()
@@ -47,4 +48,12 @@ void ItemListaDeNos::setValorTotalDasArestasNoCluster(int novoValor){
 
 int ItemListaDeNos::getValorTotalDasArestasNoCluster(){
     return this->valorTotalDasArestasNoCluster;
+}
+
+void ItemListaDeNos::setClusterAtualSendoTestado(int cluster){
+    this->clusterAtualSendoTestado = cluster;
+}
+
+int ItemListaDeNos::getClusterAtualSendoTestado(){
+    return this->clusterAtualSendoTestado;
 }

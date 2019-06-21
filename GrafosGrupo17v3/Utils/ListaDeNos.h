@@ -16,8 +16,8 @@ public:
     ListaDeNos();
     ~ListaDeNos();
     int getLength();
-    void adicionaNo(No* novoNo);
-    void insereNo(int posicao, No* novoNo);
+    void adicionaNo(No* novoNo, int clusterSendoTestado);
+    void insereNo(int posicao, No* novoNo, int clusterSendoTestado);
     ItemListaDeNos* getItem(int posicao);
     void apagaItem (ItemListaDeNos* apagado);
     void setPeso(int novoPeso);

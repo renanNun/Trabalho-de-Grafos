@@ -63,11 +63,15 @@ private:
 
 public:
     Guloso(int nClusters, Grafo* g, int L, int U, float alpha){
+
+        //Aqui estao sendo inicializados a Lista de candidatos e a Lista de Clusters
         listaDeCanditatos = new ListaDeNos();
         clusters = new ListaDeNos*[nClusters];
         for(int i = 0; i<nClusters; i++){
-            clusters[i] = new ListaDeNos();
+            clusters[i] = new ListaDeNos(); //Aqui cada um dos clusters é inicializado com uma lista de nos
         }
+
+        //Aqui preenchemos a lista de candidatos inicial por peso( para fazer o HWE )
 
         No* percorreNosDoGrafo = g->primeiro;
         while(percorreNosDoGrafo->getProx() != nullptr){
@@ -75,9 +79,14 @@ public:
             percorreNosDoGrafo = percorreNosDoGrafo->getProx();
         }
 
+        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->length - 1);
+
         for(int i = 0; i<nClusters; i++){
-            clusters[i]->popNo(listaDeCanditatos->ultimo);
+            No* noAtual = listaDeCanditatos->popNo(listaDeCanditatos->length - 1);
+            clusters[i]->adicionaNo(noAtual,i);
         }
+
+
 
 
         //Construtor

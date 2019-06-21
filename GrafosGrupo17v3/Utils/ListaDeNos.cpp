@@ -21,28 +21,31 @@ int ListaDeNos::getLength(){
     return this->length;
 }
 
-void ListaDeNos::adicionaNo(No* novoNo){
+void ListaDeNos::adicionaNo(No* novoNo, int clusterSendoTestado){
     if(this->ultimo != nullptr){
         ItemListaDeNos* novoItem = new ItemListaDeNos(ultimo, nullptr, novoNo);
+        novoItem->setClusterAtualSendoTestado(clusterSendoTestado);
         ultimo->setProximo(novoItem);
         this->ultimo = novoItem;
         length++;
     }
     else{
         ItemListaDeNos* novoItem = new ItemListaDeNos(nullptr, nullptr, novoNo);
+        novoItem->setClusterAtualSendoTestado(clusterSendoTestado);
         this->primeiro = novoItem;
         this->ultimo = novoItem;
         length++;
     }
 }
 
-void ListaDeNos::insereNo(int posicao, No* novoNo){
+void ListaDeNos::insereNo(int posicao, No* novoNo, int clusterSendoTestado){
     if (posicao >= length){
-        this->adicionaNo(novoNo);
+        this->adicionaNo(novoNo, clusterSendoTestado);
         std::cout<< "Posicao maior ou igual ao tamanho da lista, o no sera adicionado na ultima posicao" << std::endl;
     }
     else if (posicao == 0){
         ItemListaDeNos* novoItem = new ItemListaDeNos(nullptr, this->primeiro ,novoNo);
+        novoItem->setClusterAtualSendoTestado(clusterSendoTestado);
         this->primeiro->setAnterior(novoItem);
         this->primeiro = novoItem;
         length++;
@@ -55,6 +58,7 @@ void ListaDeNos::insereNo(int posicao, No* novoNo){
             i++;
         }
         ItemListaDeNos* novoItem = new ItemListaDeNos(antigoItemDaPosicao->getAnterior(), antigoItemDaPosicao, novoNo);
+        novoItem->setClusterAtualSendoTestado(clusterSendoTestado);
         antigoItemDaPosicao->getAnterior()->setProximo(novoItem);
         antigoItemDaPosicao->setAnterior(novoItem);
     }
