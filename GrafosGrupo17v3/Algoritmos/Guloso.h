@@ -109,6 +109,17 @@ public:
         //Destrutor
     }
 
+    void somaPossiveisPontosAosItems(No* noAdicionadoASolucao, int clusterDesignado){
+        Aresta* arestaPercorredoraDaListaDeAdjacencias = noAdicionadoASolucao->getAresta();
+        while(arestaPercorredoraDaListaDeAdjacencias->getProx()!= nullptr){
+            for(int i = 0; i<clusters[clusterDesignado]->getLength(); i++){
+                if(clusters[clusterDesignado]->getNo(i)->getId() == arestaPercorredoraDaListaDeAdjacencias->getId()){
+                    clusters[clusterDesignado]->getItem(i)->addPontuacaoNoCluster(arestaPercorredoraDaListaDeAdjacencias->)
+                }
+            }
+        }
+    }
+
 };
 
 

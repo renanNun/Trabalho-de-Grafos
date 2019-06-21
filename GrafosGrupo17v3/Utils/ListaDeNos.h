@@ -10,7 +10,7 @@ private:
     int length;
     ItemListaDeNos* primeiro;
     ItemListaDeNos* ultimo;
-    int peso;
+    float peso;
 
 public:
     ListaDeNos();
@@ -21,9 +21,9 @@ public:
     ItemListaDeNos* getItem(int posicao);
     No* getNo(int posicao);
     void apagaItem (ItemListaDeNos* apagado);
-    void setPeso(int novoPeso);
-    void addPeso(int adicionado);
-    int getPeso();
+    void setPeso(float novoPeso);
+    void addPeso(float adicionado);
+    float getPeso();
     No* popNo(int index);
 };
 
