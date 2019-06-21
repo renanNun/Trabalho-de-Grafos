@@ -11,6 +11,7 @@ ListaDeNos::ListaDeNos()
     this->length = 0;
     this->primeiro = nullptr;
     this->ultimo = nullptr;
+    this->peso = 0;
 }
 
 ListaDeNos::~ListaDeNos()
@@ -29,6 +30,7 @@ void ListaDeNos::adicionaNo(No* novoNo, int clusterSendoTestado){
         ultimo->setProximo(novoItem);
         this->ultimo = novoItem;
         length++;
+        this->addPeso(novoNo->getPeso());
     }
     else{
         ItemListaDeNos* novoItem = new ItemListaDeNos(nullptr, nullptr, novoNo);
@@ -36,6 +38,7 @@ void ListaDeNos::adicionaNo(No* novoNo, int clusterSendoTestado){
         this->primeiro = novoItem;
         this->ultimo = novoItem;
         length++;
+        this->addPeso(novoNo->getPeso());
     }
 }
 
@@ -50,6 +53,7 @@ void ListaDeNos::insereNo(int posicao, No* novoNo, int clusterSendoTestado){
         this->primeiro->setAnterior(novoItem);
         this->primeiro = novoItem;
         length++;
+        this->addPeso(novoNo->getPeso());
     }
     else{
         int i;
@@ -59,6 +63,7 @@ void ListaDeNos::insereNo(int posicao, No* novoNo, int clusterSendoTestado){
             i++;
         }
         ItemListaDeNos* novoItem = new ItemListaDeNos(antigoItemDaPosicao->getAnterior(), antigoItemDaPosicao, novoNo);
+        this->addPeso(novoNo->getPeso());
         novoItem->setClusterAtualSendoTestado(clusterSendoTestado);
         antigoItemDaPosicao->getAnterior()->setProximo(novoItem);
         antigoItemDaPosicao->setAnterior(novoItem);
@@ -96,37 +101,41 @@ void ListaDeNos::apagaItem(ItemListaDeNos* apagado){
         primeiro = nullptr;
         ultimo = nullptr;
         this->length = 0;
+        this->peso = 0;
         delete apagado;
     }
     else if(proximo == nullptr){
         anterior->setProximo(nullptr);
         ultimo = anterior;
         this->length = this->length - 1;
+        this->peso = this->peso - apagado->getItem()->getPeso();
         delete apagado;
     }
     else if (anterior == nullptr){
         proximo->setAnterior(nullptr);
         primeiro = proximo;
         this->length = this->length - 1;
+        this->peso = this->peso - apagado->getItem()->getPeso();
         delete apagado;
     }
     else {
         proximo->setAnterior(anterior);
         anterior->setProximo(proximo);
         this->length = this->length - 1;
+        this->peso = this->peso - apagado->getItem()->getPeso();
         delete apagado;
     }
 }
 
-void ListaDeNos::setPeso(int novoPeso){
+void ListaDeNos::setPeso(float novoPeso){
     this->peso = novoPeso;
 }
 
-void ListaDeNos::addPeso(int adicionado){
+void ListaDeNos::addPeso(float adicionado){
     this->peso = this->peso + adicionado;
 }
 
-int ListaDeNos::getPeso(){
+float ListaDeNos::getPeso(){
     return this->peso;
 }
 

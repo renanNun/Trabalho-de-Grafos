@@ -9,7 +9,7 @@ private:
     No* item;
     ItemListaDeNos* anterior;
     ItemListaDeNos* proximo;
-    int valorTotalDasArestasNoCluster;
+    float pontuacaoNoCluster;
     int clusterAtualSendoTestado;
 
 public:
@@ -21,8 +21,9 @@ public:
     ItemListaDeNos* getAnterior();
     void setProximo(ItemListaDeNos* novoProximo);
     ItemListaDeNos* getProximo();
-    void setValorTotalDasArestasNoCluster(int novoValor);
-    int getValorTotalDasArestasNoCluster();
+    void setPontuacaoNoCluster(float novoValor);
+    void addPontuacaoNoCluster(float valorAdicionado);
+    float getPontuacaoNoCluster();
     void setClusterAtualSendoTestado(int cluster);
     int getClusterAtualSendoTestado();
 

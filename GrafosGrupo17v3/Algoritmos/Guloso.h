@@ -2,8 +2,8 @@
 #define GULOSO_H_INCLUDED
 
 #include "../Grafo.h"
-#include "../Utils/ListaDeNos.h"
-#include "../Utils/ItemListaDeNos.h"
+#include "ListaDeNos.h"
+#include "ItemListaDeNos.h"
 
 class Guloso{
 
@@ -29,25 +29,34 @@ private:
     return (i+1);
     }
 
+    int particaoPontosNaSolucao(ListaDeNos* arr, int low, int high){
+
+
+    }
+
     void organizaPorPesoDoNo(){
         if(listaDeCanditatos == nullptr){
             std::cout << "Lista de Candidatos vazia, portanto organizada" << endl;
-            return;
+        }
+        else {
+            quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
         }
 
-        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
+
     }
 
     void quickSortPorPesoDoNo(ListaDeNos* arr, int low, int high){
         if(low < high){
-            int pi = partition(arr, low, high);
+            int pi = particaoPesoDoNo(arr, low, high);
 
             quickSortPorPesoDoNo(arr, low, pi - 1);
             quickSortPorPesoDoNo(arr, pi+1, high);
         }
     }
 
+    int testePontosGeradosParaSolucao(ItemListaDeNos* itemTestado){
 
+    }
 
     ListaDeNos** clusters;
     ListaDeNos* listaDeCanditatos;
@@ -86,7 +95,7 @@ public:
         int nNosListaDeCandidatos = listaDeCanditatos->getLength();
         for (int i = 0; i<nClusters-1; i++){
             for(int j = 0; j<nNosListaDeCandidatos; j++){
-                listaDeCanditatos->adicionaNo(listaDeCanditatos->getItem(j), i + 1);
+                listaDeCanditatos->adicionaNo(listaDeCanditatos->getNo(j), i + 1);
             }
         }
 
