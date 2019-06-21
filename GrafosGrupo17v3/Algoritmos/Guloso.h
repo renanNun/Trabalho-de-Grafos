@@ -47,17 +47,8 @@ private:
         }
     }
 
-    void preencheVetor(Grafo *g){
 
-    }
 
-    void atualizarVetor(No* escolhido){
-
-    }
-
-    void removeCandidato(No* no){
-
-    }
     ListaDeNos** clusters;
     ListaDeNos* listaDeCanditatos;
 
@@ -71,21 +62,35 @@ public:
             clusters[i] = new ListaDeNos(); //Aqui cada um dos clusters é inicializado com uma lista de nos
         }
 
-        //Aqui preenchemos a lista de candidatos inicial por peso( para fazer o HWE )
+        //Aqui preenchemos a lista de candidatos inicial
 
         No* percorreNosDoGrafo = g->primeiro;
         while(percorreNosDoGrafo->getProx() != nullptr){
-            listaDeCanditatos.adicionaNo(percorreNosDoGrafo);
+            //Aqui vai ser colocado como se fosse o teste pro cluster 0 pois fica mais facil do que mudar logo a frente
+            listaDeCanditatos.adicionaNo(percorreNosDoGrafo, 0);
             percorreNosDoGrafo = percorreNosDoGrafo->getProx();
         }
 
-        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->length - 1);
+        //Aqui é feita a organização por peso e os nós mais pesados são colocados um em cada cluster
+        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength() - 1);
 
         for(int i = 0; i<nClusters; i++){
-            No* noAtual = listaDeCanditatos->popNo(listaDeCanditatos->length - 1);
+            No* noAtual = listaDeCanditatos->popNo(listaDeCanditatos->getLength() - 1);
             clusters[i]->adicionaNo(noAtual,i);
         }
 
+        //A lista de candidatos sgora será alterada para ser por quantos pontos ela adiciona para a solução
+        //Por isso cada item terá nClusters copias de si mesmo (Cada um para o numero de pontos que ele adiciona em cada cluster)
+
+        //Aqui salvamos quantos nós tem na CL e fazemos as outras (nClustes - 1) copias de cada item da lista
+        int nNosListaDeCandidatos = listaDeCanditatos->getLength();
+        for (int i = 0; i<nClusters-1; i++){
+            for(int j = 0; j<nNosListaDeCandidatos; j++){
+                listaDeCanditatos->adicionaNo(listaDeCanditatos->getItem(j), i + 1);
+            }
+        }
+
+        //Agora temos uma CL com nClusters copias de cada No e vamos organizar por pontos que ela soma a solução
 
 
 

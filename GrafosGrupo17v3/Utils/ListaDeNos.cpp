@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "../No.h"
+#include "ItemListaDeNos.h"
 
 using namespace std;
 
@@ -63,6 +64,30 @@ void ListaDeNos::insereNo(int posicao, No* novoNo, int clusterSendoTestado){
         antigoItemDaPosicao->setAnterior(novoItem);
     }
 }
+
+ItemListaDeNos* ListaDeNos::getItem(int posicao){
+    if(posicao >= length){
+        std::cout << "Erro: Posicao maior do que ultimo termo" << std::endl;
+        return nullptr;
+    }
+    else if(posicao < 0){
+        std::cout << "Erro: Nao existe posicao menor que zero em uma lista" << std::endl;
+        return nullptr;
+    }
+    else {
+        ItemListaDeNos* percorredor = primeiro;
+        for(int i = 0; i<posicao, i++){
+            percorredor = percorredor ->getProximo();
+        }
+        return percorredor;
+    }
+}
+
+No* ListaDeNos::getNo(int posicao){
+    ItemListaDeNos* aux = this->getItem(posicao);
+    return aux->getItem();
+}
+
 
 void ListaDeNos::apagaItem(ItemListaDeNos* apagado){
     ItemListaDeNos* anterior = apagado->getAnterior();

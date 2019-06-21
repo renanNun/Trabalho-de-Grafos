@@ -19,6 +19,7 @@ public:
     void adicionaNo(No* novoNo, int clusterSendoTestado);
     void insereNo(int posicao, No* novoNo, int clusterSendoTestado);
     ItemListaDeNos* getItem(int posicao);
+    No* getNo(int posicao);
     void apagaItem (ItemListaDeNos* apagado);
     void setPeso(int novoPeso);
     void addPeso(int adicionado);
