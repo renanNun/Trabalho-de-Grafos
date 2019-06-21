@@ -96,11 +96,27 @@ private:
         }
     }
 
+    void insereItemNaSolucaoPelosPontos(int index){
+        ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
+        No* noEscolhido = itemEscolhido->getItem();
+        int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+        clusters[clusterEscolhido]->adicionaNo(listaDeCanditatos->popNo(index));
+        somaPossiveisPontosAosItems(noEscolhido, clusterEscolhido);
+        this->organizaPorPontosNaSolucao();
+    }
+
     ListaDeNos** clusters;
     ListaDeNos* listaDeCanditatos;
 
 public:
-    Guloso(int nClusters, Grafo* g, int L, int U, float alpha){
+    Guloso(){
+       //Construtor
+    }
+    ~Guloso(){
+        //Destrutor
+    }
+
+    void geraSolucao(int nClusters, Grafo* g, int L, int U, float alpha){
 
         //Aqui estao sendo inicializados a Lista de candidatos e a Lista de Clusters
         listaDeCanditatos = new ListaDeNos();
@@ -137,14 +153,26 @@ public:
             }
         }
 
+        for(int i = 0; i<nCluster; i++){
+            this->somaPossiveisPontosAosItems(clusters[i]->getNo(0), i);
+        }
+
         //Agora temos uma CL com nClusters copias de cada No e vamos organizar por pontos que ela soma a solução
+        this->organizaPorPontosNaSolucao();
+
+        //Vamos colocar em cada um dos clusters a aresta de maior peso, para concluir o HWE (Heavyiest Weight Edge)
+        for(int i = 0; i<nCluster; i++){
+            for(int j = 0; j<listaDeCanditatos->getLength(); j++){
+                if(listaDeCanditatos->getItem(j)->getClusterAtualSendoTestado() == i){
+                    this->insereItemNaSolucaoPelosPontos(j);
+                    break;
+                }
+            }
+        }
+
+        //Agora que o setup tá pronto, começa o guloso randomizado
 
 
-
-        //Construtor
-    }
-    ~Guloso(){
-        //Destrutor
     }
 
 };
