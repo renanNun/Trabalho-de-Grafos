@@ -12,6 +12,7 @@ ListaDeNos::ListaDeNos()
     this->primeiro = nullptr;
     this->ultimo = nullptr;
     this->peso = 0;
+    this->minimoDoClusterSatisfeito = false;
 }
 
 ListaDeNos::~ListaDeNos()
@@ -144,4 +145,12 @@ No* ListaDeNos::popNo(int index){
     No* noASerRetornado = itemAtual->getItem();
     this->apagaItem(itemAtual);
     return noASerRetornado;
+}
+
+bool ListaDeNos::getMinimoDoClusterSatisfeito(){
+    return this->minimoDoClusterSatisfeito;
+}
+
+void ListaDeNos::setMinimoDoClusterSatisfeito(bool valorAtual){
+    this->minimoDoClusterSatisfeito = valorAtual;
 }

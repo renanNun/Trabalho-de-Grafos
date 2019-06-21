@@ -1,6 +1,8 @@
 #ifndef GULOSO_H_INCLUDED
 #define GULOSO_H_INCLUDED
 
+#include <cstdlib>
+#include <ctime>
 #include "../Grafo.h"
 #include "ListaDeNos.h"
 #include "ItemListaDeNos.h"
@@ -105,6 +107,30 @@ private:
         this->organizaPorPontosNaSolucao();
     }
 
+    void getRandomNumber(int lower, int upper){
+        return rand()%(upper - lower) + lower;
+    }
+
+    bool podeAdicionarONoAoCluster(ItemListaDeNos* itemEscolhido, float upperBound){
+        No* noEscolhido = itemEscolhido->getItem();
+        int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+        if(noEscolhido->getPeso() + clusters[clusterEscolhido]->getPeso() > upperBound){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    bool oMinimoDosClustersFoiAtingido(float lowerBound, int nClusters){
+        for(int i = 0; i<nClusters; i++){
+            if(!nClusters[i]->getMinimoDoClusterSatisfeito()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     ListaDeNos** clusters;
     ListaDeNos* listaDeCanditatos;
 
@@ -170,7 +196,22 @@ public:
             }
         }
 
+
         //Agora que o setup tá pronto, começa o guloso randomizado
+        int seedTime = time(0)
+        srand(seedTime);
+
+        //Primeiro Vamos preencher os clusters até o minimo para ser uma solucao viavel
+        while(listaDeCanditatos->getLength() > 0){
+            int teto = static_cast<int>(listaDeCanditatos->getLength()*alpha) + 1;
+            if(teto>listaDeCanditatos->getLength()){
+                teto = listaDeCanditatos->getLength();
+            }
+            int index = this->getRandomNumber(0, teto);
+            if(this->podeAdicionarONoAoCluster(listaDeCanditatos->getItem(index),U)){
+                this->insereItemNaSolucaoPelosPontos(index);
+            }
+        }
 
 
     }
