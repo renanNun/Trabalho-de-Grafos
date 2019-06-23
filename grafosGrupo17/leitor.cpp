@@ -15,13 +15,17 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
             getline(instanceFile, output);
             totalOutput += output + "\n";
         }
+        instanceFile.close();
 
         cout << "O SEGUNDO PORTÃO: O PORTÃO DA CURA! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP DE EXTRAÇÃO DA PRIMEIRA INFORMAÇÃO, O NÚMERO DE ELEMENTOS
         {
             if (totalOutput[i] == ' ')
+            {
+                i++;
                 break;
+            }
 
             strExtractedValue += totalOutput[i];
             i++;
@@ -31,11 +35,13 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
 
         cout << "O TERCEIRO PORTÃO: O PORTÃO DA VIDA! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
-        i++;
-        while (1) //LOOP PARA EXTRAÇÃO DO NÚMERO DE CLUSTERS A SEREM FORMADOS
+        while (1)        //LOOP PARA EXTRAÇÃO DO NÚMERO DE CLUSTERS A SEREM FORMADOS
         {
             if (totalOutput[i] == ' ')
+            {
+                i++;
                 break;
+            }
 
             strExtractedValue += totalOutput[i];
             i++;
@@ -45,11 +51,13 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
 
         cout << "O QUARTO PORTÃO: O PORTÃO DA DOR! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
-        i++;
-        while (1) //LOOP PARA EXTRAÇÃO DO TIPO DE GRUPO ds ss (Clusters de mesmo tamanho) ou ds (Tamanhos diferentes)
+        while (1)        //LOOP PARA EXTRAÇÃO DO TIPO DE GRUPO ds ss (Clusters de mesmo tamanho) ou ds (Tamanhos diferentes)
         {
             if (totalOutput[i] == ' ')
+            {
+                i++;
                 break;
+            }
 
             strExtractedValue += totalOutput[i];
             i++;
@@ -61,23 +69,28 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
         usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int k = 0; k < numClusters; k++) //LOOP PARA EXTRAÇÃO DAS INFORMAÇÕES DE LIMITE DOS CLUSTERS
         {
-            i++;
             while (1)
             {
                 if (totalOutput[i] == ' ')
+                {
+                    i++;
                     break;
-
+                }
                 strExtractedValue += totalOutput[i];
                 i++;
             }
             clusterLowerLimit.push_back(stoi(strExtractedValue));
             strExtractedValue.clear();
 
-            i++;
             while (1)
             {
                 if (totalOutput[i] == ' ')
+                {
+                    i++;
+                    if (totalOutput[i] == 'W')
+                        i += 2;
                     break;
+                }
 
                 strExtractedValue += totalOutput[i];
                 i++;
@@ -87,16 +100,16 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
         }
 
         cout << "O SEXTO PORTÃO: O PORTÃO DA VISÃO! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
-        i += 2;
+        usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int l = 0; l < numElements; l++) //LOOP PARA EXTRAÇÃO DOS PESOS DOS NÓS
         {
-            i++;
             while (1)
             {
                 if (totalOutput[i] == ' ' || totalOutput[i] == '\n')
                 {
                     i++;
+                    if (totalOutput[i] == '\n')
+                        i++;
                     break;
                 }
 
@@ -109,13 +122,19 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
 
         cout << "O SÉTIMO PORTÃO: O PORTÃO DA MARAVILHA! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
-
-        while (i < totalOutput.length() - 1)
+        while (isdigit(totalOutput[i]))
         {
-            while (1)
+            for (int m = 0; m < 3; m++)
             {
-                if (totalOutput[i] == '\n')
+                if (m == 2)
                 {
+                    while (totalOutput[i] != '\n')
+                    {
+                        strExtractedValue += totalOutput[i];
+                        i++;
+                    }
+                    edgesWeight.push_back(stod(strExtractedValue));
+                    strExtractedValue.clear();
                     i++;
                     break;
                 }
@@ -129,58 +148,35 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
                     strExtractedValue += totalOutput[i];
                     i++;
                 }
-                edgesWeightRow.push_back(stod(strExtractedValue));
+                edgesWeightElementsRow.push_back(stoi(strExtractedValue));
                 strExtractedValue.clear();
             }
-            edgesWeightMatrix.push_back(edgesWeightRow);
+            edgesWeightElementsMatrix.push_back(edgesWeightElementsRow);
         }
 
         cout << "O OITAVO PORTÃO: O PORTÃO DA MORTEEEEE! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
-        cout << "Quantidade de nós: " << numElements << endl;
-        cout << "Quantidade de clusters a serem formados: " << numClusters << endl;
-        if (areClustersSameSized)
-            cout << "Todos os clusters devem ter o mesmo tamanho." << endl;
-        else
-            cout << "O clusters não precisam ter o mesmo tamanho." << endl;
-        cout << "Peso de cada nó: " << endl;
-        for (int i = 0; i < numElements; i++)
-        {
-            cout << "Peso nó " << i << ": ";
-            cout << nodeWeight[i] << endl;
-        }
-        for (unsigned int y = 0; y < edgesWeightMatrix[y].size(); y++)
-        {
-            for (unsigned int z = 0; z < 3; z++)
-            {
-                cout << edgesWeightMatrix[y][z];
-            }
-            cout << endl;
-        }
-
-        instanceFile.close();
     }
     else if (instanceType == 'd' || instanceType == 'D')
     {
-        cout << "O PRIMEIRO PORTÃO: O PORTÃO DE ABERTURA! KAI!" << endl;
-        usleep(2100000);                  //Sleep(2100); PARA WINDOWS
-        instanceFile.open("20_5_270001"); //SUBSTITUIR POR: instanceFile.open(instanceName);
+        instanceFile.open(instanceName); //SUBSTITUIR POR: instanceFile.open(instanceName);
         while (!instanceFile.eof())
         {
             getline(instanceFile, output);
             totalOutput += output + "\n";
         }
-
-        cout << totalOutput << endl; //IMPRIME TODA A INSTANCIA, AGORA ARMAZENADA EM totalOutput
+        instanceFile.close();
 
         while (1)
         {
+            i++;
             if (instanceName[i] == '_')
                 charCounter++;
             if (charCounter == 2)
+            {
                 for (int a = i + 1; a <= (instanceName.length() - 1); a++)
                     strExtractedValue += instanceName[a];
-            break;
+                break;
+            }
         }
         instanceSeed = stod(strExtractedValue);
         strExtractedValue.clear();
@@ -209,6 +205,7 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
             }
 
             strExtractedValue += totalOutput[i];
+            i++;
         }
         numClusters = stoi(strExtractedValue);
         strExtractedValue.clear();
@@ -222,6 +219,7 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
             }
 
             strExtractedValue += totalOutput[i];
+            i++;
         }
         clustersCapacity = stod(strExtractedValue);
         strExtractedValue.clear();
@@ -263,7 +261,6 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
                 strExtractedValue.clear();
             }
         }
-        instanceFile.close();
     }
     else
     {

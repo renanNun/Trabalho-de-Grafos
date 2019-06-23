@@ -6,6 +6,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <cctype>
 #include <unistd.h> //#include <Windows.h>
 
 #include "Grafo.h"
