@@ -12,7 +12,7 @@ ListaDeNos::ListaDeNos()
     this->primeiro = nullptr;
     this->ultimo = nullptr;
     this->peso = 0;
-    this->minimoDoClusterSatisfeito = false;
+    this->pontuacaoAtual = 0;
 }
 
 ListaDeNos::~ListaDeNos()
@@ -147,10 +147,14 @@ No* ListaDeNos::popNo(int index){
     return noASerRetornado;
 }
 
-bool ListaDeNos::getMinimoDoClusterSatisfeito(){
-    return this->minimoDoClusterSatisfeito;
+float ListaDeNos::getPontuacaoAtual(){
+    return this->pontuacaoAtual;
 }
 
-void ListaDeNos::setMinimoDoClusterSatisfeito(bool valorAtual){
-    this->minimoDoClusterSatisfeito = valorAtual;
+void ListaDeNos::setPontuacaoAtual(float novoValor){
+    this->pontuacaoAtual = novoValor;
+}
+
+void ListaDeNos::addPontuacaoAtual(float adicionado){
+    this->pontuacaoAtual = this->pontuacaoAtual + adicionado;
 }

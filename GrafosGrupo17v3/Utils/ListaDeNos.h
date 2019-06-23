@@ -11,7 +11,7 @@ private:
     ItemListaDeNos* primeiro;
     ItemListaDeNos* ultimo;
     float peso;
-    bool minimoDoClusterSatisfeito;
+    float pontuacaoAtual;
 
 public:
     ListaDeNos();
@@ -26,8 +26,9 @@ public:
     void addPeso(float adicionado);
     float getPeso();
     No* popNo(int index);
-    bool getMinimoDoClusterSatisfeito();
-    void setMinimoDoClusterSatisfeito(bool valorAtual);
+    float getPontuacaoAtual();
+    void setPontuacaoAtual(float novoValor);
+    void addPontuacaoAtual(float adicionado);
 };
 
 #endif // LISTADENOS_H

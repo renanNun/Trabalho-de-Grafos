@@ -102,6 +102,7 @@ private:
         ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
         No* noEscolhido = itemEscolhido->getItem();
         int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+        clusters[clusterEscolhido]->addPontuacaoAtual(itemEscolhido->getPontuacaoNoCluster());
         clusters[clusterEscolhido]->adicionaNo(listaDeCanditatos->popNo(index));
         somaPossiveisPontosAosItems(noEscolhido, clusterEscolhido);
         this->organizaPorPontosNaSolucao();
@@ -124,7 +125,7 @@ private:
 
     bool oMinimoDosClustersFoiAtingido(float lowerBound, int nClusters){
         for(int i = 0; i<nClusters; i++){
-            if(!nClusters[i]->getMinimoDoClusterSatisfeito()){
+            if(nClusters[i]->getPontuacaoAtual()<lowerBound){
                 return false;
             }
         }
@@ -202,15 +203,24 @@ public:
         srand(seedTime);
 
         //Primeiro Vamos preencher os clusters até o minimo para ser uma solucao viavel
-        while(listaDeCanditatos->getLength() > 0){
+        while(listaDeCanditatos->getLength() > 0&&!this->oMinimoDosClustersFoiAtingido(L ,nClusters)){
             int teto = static_cast<int>(listaDeCanditatos->getLength()*alpha) + 1;
             if(teto>listaDeCanditatos->getLength()){
                 teto = listaDeCanditatos->getLength();
             }
             int index = this->getRandomNumber(0, teto);
-            if(this->podeAdicionarONoAoCluster(listaDeCanditatos->getItem(index),U)){
-                this->insereItemNaSolucaoPelosPontos(index);
+            while(listaDeCanditatos->getItem(index)->getProximo()!= nullptr){
+                if(clusters[listaDeCanditatos->getItem(index)->getClusterAtualSendoTestado()]->getPontuacaoAtual()<L){
+                    if(this->podeAdicionarONoAoCluster(listaDeCanditatos->getItem(index),U)){
+                        this->insereItemNaSolucaoPelosPontos(index);
+                        break;
+                    }
+                }
+                else {
+                    index++;
+                }
             }
+
         }
 
 
