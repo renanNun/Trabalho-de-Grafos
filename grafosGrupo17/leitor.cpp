@@ -162,6 +162,108 @@ void LeituraArquivo::atribuirDados(std::string instanceName, Grafo &grafo, char 
     }
     else if (instanceType == 'd' || instanceType == 'D')
     {
+        cout << "O PRIMEIRO PORTÃO: O PORTÃO DE ABERTURA! KAI!" << endl;
+        usleep(2100000);                  //Sleep(2100); PARA WINDOWS
+        instanceFile.open("20_5_270001"); //SUBSTITUIR POR: instanceFile.open(instanceName);
+        while (!instanceFile.eof())
+        {
+            getline(instanceFile, output);
+            totalOutput += output + "\n";
+        }
+
+        cout << totalOutput << endl; //IMPRIME TODA A INSTANCIA, AGORA ARMAZENADA EM totalOutput
+
+        while (1)
+        {
+            if (instanceName[i] == '_')
+                charCounter++;
+            if (charCounter == 2)
+                for (int a = i + 1; a <= (instanceName.length() - 1); a++)
+                    strExtractedValue += instanceName[a];
+            break;
+        }
+        instanceSeed = stod(strExtractedValue);
+        strExtractedValue.clear();
+        i = 0;
+
+        while (1)
+        {
+            if (totalOutput[i] == '\n')
+            {
+                i++;
+                break;
+            }
+
+            strExtractedValue += totalOutput[i];
+            i++;
+        }
+        numElements = stoi(strExtractedValue);
+        strExtractedValue.clear();
+
+        while (1)
+        {
+            if (totalOutput[i] == '\n')
+            {
+                i++;
+                break;
+            }
+
+            strExtractedValue += totalOutput[i];
+        }
+        numClusters = stoi(strExtractedValue);
+        strExtractedValue.clear();
+
+        while (1)
+        {
+            if (totalOutput[i] == '\n')
+            {
+                i++;
+                break;
+            }
+
+            strExtractedValue += totalOutput[i];
+        }
+        clustersCapacity = stod(strExtractedValue);
+        strExtractedValue.clear();
+
+        for (int b = 0; b < numElements; b++)
+        {
+            while (1)
+            {
+                if (totalOutput[i] == '\n')
+                {
+                    i++;
+                    break;
+                }
+                strExtractedValue += totalOutput[i];
+            }
+            nodeWeight.push_back(stod(strExtractedValue));
+            strExtractedValue.clear();
+        }
+
+        for (int c = 0; c < numElements; c++) //C++, HAHAHA! É que nem quando você tá assistindo um filme e falam o nome do filme no decorrer da trama.
+        {
+            edgeWeightMatrixRows.push_back(c);
+        }
+        edgeWeightMatrix.push_back(edgeWeightMatrixRows);
+        for (int d = 0; d < numElements; d++)
+        {
+            for (int e = 1; e < (numElements - 1); e++)
+            {
+                while (1)
+                {
+                    if (totalOutput[i] == ' ')
+                    {
+                        i++;
+                        break;
+                    }
+                    strExtractedValue += totalOutput[i];
+                }
+                edgeWeightMatrix[d].push_back(stoi(strExtractedValue));
+                strExtractedValue.clear();
+            }
+        }
+        instanceFile.close();
     }
     else
     {

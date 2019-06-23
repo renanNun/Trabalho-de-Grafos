@@ -22,12 +22,14 @@ private:
     int numElements, numClusters; //NÚMERO DE NÓS, NÚMERO DE CLUSTERS A SEREM FORMADOS
     bool areClustersSameSized; //VARIÁVEL DETERMINA SE OS CLUSTERS DEVEM TER O MESMO TAMAMHO
     string strExtractedValue; //VARIÁVEL DE USO NA EXTRAÇÃO, NÃO ARMAZENA INFORMAÇÃO FINAL
-    unsigned int i; //INDICE PARA DETERMINAR EM PONTO DO DOCUMENTO
+    unsigned long i; //INDICE PARA DETERMINAR EM PONTO DO DOCUMENTO
     vector <int> clusterLowerLimit; //clusterLowerLimit e clusterUpperLimit são vetores paralelos, os elementos de mesmo indice correspondem ao mesmo cluster
     vector <int> clusterUpperLimit;
     vector <int> nodeWeight; //Vetor de peso dos nós
     vector <vector<double>> edgesWeightMatrix; //MATRIZ ONDE A LINHA 0 SÃO OS NÓS, AS LINHAS SEGUINTES SÃO O PESO DA ARESTA ENTRE ELES E OUTRO NÓ
     vector <double> edgesWeightRow;
+    charCounter = 0;
+    double clustersCapacity;
 
 };
 
