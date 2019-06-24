@@ -12,6 +12,13 @@ class Guloso{
 private:
 
     void trocar(ItemListaDeNos* a, ItemListaDeNos* b){
+        /**
+        * Troca da posicao dos items para os QuickSorts.
+        *
+        * @param a  Item que vai para a posição de b
+        * @param b  Item que vai para a posição de a
+        * @author   Lucas Ribeiro
+        */
         No* aux = a->getItem();
         float auxPontos = a->addPontuacaoNoCluster();
         int auxCluster = a->getClusterAtualSendoTestado();
@@ -24,6 +31,14 @@ private:
     }
 
     int particaoPesoDoNo(ListaDeNos* arr, int low, int high){
+        /**
+        * Faz a parte da divisão da lista de nos para o QuickSort por Peso dos Nos.
+        *
+        * @param arr  Lista que será organizada
+        * @param low  Indice onde comeca a organização
+        * @param high Indice onde termina a organização
+        * @author   Lucas Ribeiro
+        */
         float pivot = arr->getNo(high)->getPeso();
         int i = (low - 1);
         for(int j = low; j <= high - 1; j++){
@@ -37,6 +52,14 @@ private:
     }
 
     int particaoPontosNaSolucao(ListaDeNos* arr, int low, int high){
+        /**
+        * Faz a parte da divisão da lista de nos para o QuickSort por pontos(Peso das arestas) somados a solução.
+        *
+        * @param arr  Lista que será organizada
+        * @param low  Indice onde comeca a organização
+        * @param high Indice onde termina a organização
+        * @author   Lucas Ribeiro
+        */
         float pivot = arr->getItem(high)->getPontuacaoNoCluster();
         int i = (low - 1);
         for(int j = low; j <= high - 1; j++){
@@ -98,11 +121,12 @@ private:
         }
     }
 
-    void insereItemNaSolucaoPelosPontos(int index){
+    void insereItemNaSolucaoPelosPontos(int index, int nClusters){
         ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
         No* noEscolhido = itemEscolhido->getItem();
         int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
         clusters[clusterEscolhido]->addPontuacaoAtual(itemEscolhido->getPontuacaoNoCluster());
+        this->limpaClones(itemeEscolhido,nClusters);
         clusters[clusterEscolhido]->adicionaNo(listaDeCanditatos->popNo(index));
         somaPossiveisPontosAosItems(noEscolhido, clusterEscolhido);
         this->organizaPorPontosNaSolucao();
@@ -130,6 +154,46 @@ private:
             }
         }
         return true;
+    }
+
+    void limpaClones(ItemListaDeNos* itemEscolhido, int nClusters){
+        No* noEscolhido = itemEscolhido->getItem();
+        int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+        for(int i = 0; i<nClusters; i++){
+            if(i!=clusterEscolhido){
+                ItemListaDeNos* percorredor = listaDeCanditatos->getItem(0);
+                while((percorredor->getProximo()!=nullptr)&&
+                    ((percorredor->getItem()->getId() != noEscolhido->getId())||
+                     (percorredor->getClusterAtualSendoTestado()==clusterEscolhido))){
+                        if(percorredor!=nullptr){
+                            listaDeCanditatos->apagaItem(percorredor);
+                        }
+                        percorredor = percorredor->getProximo();
+                     }
+            }
+        }
+    }
+
+    void limpaOpcoesDoCluster(int cluster){
+        ItemListaDeNos* percorredor = listaDeCanditatos->getItem(0);
+        int testadorSeEhOUltimoCluster = percorredor->getClusterAtualSendoTestado();
+        bool ehUltimoCluster = false;
+        while(percorredor->getProximo()!=nullptr){
+            if(percorredor->getClusterAtualSendoTestado()!=testadorSeEhOUltimoCluster){
+                ehUltimoCluster = true;
+            }
+        }
+        if(ehUltimoCluster){
+            while(percorredor->getProximo()!=nullptr){
+                if(percorredor->getClusterAtualSendoTestado()==cluster){
+                    percorredor = percorredor->getProximo();
+                    listaDeCanditatos->apagaItem(percorredor->getAnterior());
+                }
+                else{
+                    percorredor = percorredor->getProximo();
+                }
+            }
+        }
     }
 
     ListaDeNos** clusters;
@@ -191,7 +255,7 @@ public:
         for(int i = 0; i<nCluster; i++){
             for(int j = 0; j<listaDeCanditatos->getLength(); j++){
                 if(listaDeCanditatos->getItem(j)->getClusterAtualSendoTestado() == i){
-                    this->insereItemNaSolucaoPelosPontos(j);
+                    this->insereItemNaSolucaoPelosPontos(j,nClusters);
                     break;
                 }
             }
@@ -204,24 +268,38 @@ public:
 
         //Primeiro Vamos preencher os clusters até o minimo para ser uma solucao viavel
         while(listaDeCanditatos->getLength() > 0&&!this->oMinimoDosClustersFoiAtingido(L ,nClusters)){
+            //Aqui pegamos o teto para o alpha
             int teto = static_cast<int>(listaDeCanditatos->getLength()*alpha) + 1;
             if(teto>listaDeCanditatos->getLength()){
                 teto = listaDeCanditatos->getLength();
             }
             int index = this->getRandomNumber(0, teto);
-            while(listaDeCanditatos->getItem(index)->getProximo()!= nullptr){
-                if(clusters[listaDeCanditatos->getItem(index)->getClusterAtualSendoTestado()]->getPontuacaoAtual()<L){
-                    if(this->podeAdicionarONoAoCluster(listaDeCanditatos->getItem(index),U)){
-                        this->insereItemNaSolucaoPelosPontos(index);
-                        break;
-                    }
+
+            ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
+            int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+
+            //Aqui testamos se esse no faz o cluster passar do peso minimo
+            if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() > L){
+
+                //Se ele faz o cluster passar do minimo e ficar abaixo do maximo, limpamos as outras opcoes do cluster temporariamente da CL
+                if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() <U){
+                    this->insereItemNaSolucaoPelosPontos(index,nClusters);
+                    this->limpaOpcoesDoCluster(clusterEscolhido);
                 }
-                else {
-                    index++;
+
+                //Se o no fizer o cluster estourar o maximo tambem, nao pode estar na solucao
+                else{
+                    listaDeCanditatos->apagaItem(itemEscolhido);
                 }
             }
 
+            //E aqui, se ele nao faz o cluster ultrapassar limite algum ele só é adicionado a solucao
+            else{
+                this->insereItemNaSolucaoPelosPontos(index,nClusters);
+            }
         }
+
+        //Agora como todos já atingiram o minimo vamos preencher os clusters com o resto dos nos
 
 
     }
