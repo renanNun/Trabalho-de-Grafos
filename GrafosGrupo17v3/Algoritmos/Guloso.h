@@ -73,20 +73,20 @@ private:
     }
 
     void organizaPorPesoDoNo(){
-        if(listaDeCanditatos == nullptr){
+        if(listaDeCandidatos == nullptr){
             std::cout << "Lista de Candidatos vazia, portanto organizada" << std::endl;
         }
         else {
-            quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
+            quickSortPorPesoDoNo(listaDeCandidatos, 0, listaDeCandidatos->getLength()-1);
         }
     }
 
     void organizaPorPontosNaSolucao(){
-        if(listaDeCanditatos == nullptr){
+        if(listaDeCandidatos == nullptr){
             std::cout << "Lista de Candidatos vazia, portanto organizada" << std::endl;
         }
         else {
-            quickSortPorPontosNaSolucao(listaDeCanditatos, 0, listaDeCanditatos->getLength()-1);
+            quickSortPorPontosNaSolucao(listaDeCandidatos, 0, listaDeCandidatos->getLength()-1);
         }
     }
 
@@ -112,8 +112,14 @@ private:
     void somaPossiveisPontosAosItems(No* noAdicionadoASolucao, int clusterDesignado){
         Aresta* arestaPercorredoraDaListaDeAdjacencias = noAdicionadoASolucao->getAresta();
         while(arestaPercorredoraDaListaDeAdjacencias->getProx()!= nullptr){
-            for(int i = 0; i<listaDeCanditatos; i++){
-                ItemListaDeNos* aux = listaDeCanditatos->getItem(i);
+            for(int i = 0; i<listaDeCandidatos->getLength(); i++){
+                ItemListaDeNos* aux = listaDeCandidatos->getItem(i);
+                if(aux->getItem()->getId() != arestaPercorredoraDaListaDeAdjacencias->getId()){
+                    aux->addPontuacaoNoCluster(arestaPercorredoraDaListaDeAdjacencias->getPeso());
+                }
+            }
+            for(int i = 0; i<listaDeCandidatosRetiradosTemporariamente->getLength(); i++){
+                ItemListaDeNos* aux = listaDeCandidatosRetiradosTemporariamente->getItem(i);
                 if(aux->getItem()->getId() != arestaPercorredoraDaListaDeAdjacencias->getId()){
                     aux->addPontuacaoNoCluster(arestaPercorredoraDaListaDeAdjacencias->getPeso());
                 }
@@ -122,12 +128,12 @@ private:
     }
 
     void insereItemNaSolucaoPelosPontos(int index, int nClusters){
-        ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
+        ItemListaDeNos* itemEscolhido = listaDeCandidatos->getItem(index);
         No* noEscolhido = itemEscolhido->getItem();
         int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
         clusters[clusterEscolhido]->addPontuacaoAtual(itemEscolhido->getPontuacaoNoCluster());
         this->limpaClones(itemeEscolhido,nClusters);
-        clusters[clusterEscolhido]->adicionaNo(listaDeCanditatos->popNo(index));
+        clusters[clusterEscolhido]->adicionaNo(listaDeCandidatos->popNo(index));
         somaPossiveisPontosAosItems(noEscolhido, clusterEscolhido);
         this->organizaPorPontosNaSolucao();
     }
@@ -161,43 +167,56 @@ private:
         int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
         for(int i = 0; i<nClusters; i++){
             if(i!=clusterEscolhido){
-                ItemListaDeNos* percorredor = listaDeCanditatos->getItem(0);
+                ItemListaDeNos* percorredor = listaDeCandidatos->getItem(0);
                 while((percorredor->getProximo()!=nullptr)&&
                     ((percorredor->getItem()->getId() != noEscolhido->getId())||
                      (percorredor->getClusterAtualSendoTestado()==clusterEscolhido))){
-                        if(percorredor!=nullptr){
-                            listaDeCanditatos->apagaItem(percorredor);
-                        }
+                    percorredor = percorredor->getProximo();
+                }
+                if(percorredor!=nullptr){
+                    listaDeCandidatos->apagaItem(percorredor);
+                }
+                else{
+                    percorredor = listaDeCandidatosRetiradosTemporariamente->getItem(0);
+                    while((percorredor->getProximo()!=nullptr)&&
+                        ((percorredor->getItem()->getId() != noEscolhido->getId())||
+                        (percorredor->getClusterAtualSendoTestado()==clusterEscolhido)))
+                    {
                         percorredor = percorredor->getProximo();
-                     }
+                    }
+                    if(percorredor!=nullptr){
+                        listaDeCandidatosRetiradosTemporariamente->apagaItem(percorredor);
+                    }
+                    else{
+                        std::cout << "Algo deu errado no limpa clones" << std::endl;
+                    }
+                }
+
             }
         }
+
     }
 
     void limpaOpcoesDoCluster(int cluster){
-        ItemListaDeNos* percorredor = listaDeCanditatos->getItem(0);
-        int testadorSeEhOUltimoCluster = percorredor->getClusterAtualSendoTestado();
-        bool ehUltimoCluster = false;
-        while(percorredor->getProximo()!=nullptr){
-            if(percorredor->getClusterAtualSendoTestado()!=testadorSeEhOUltimoCluster){
-                ehUltimoCluster = true;
-            }
-        }
-        if(ehUltimoCluster){
-            while(percorredor->getProximo()!=nullptr){
-                if(percorredor->getClusterAtualSendoTestado()==cluster){
-                    percorredor = percorredor->getProximo();
-                    listaDeCanditatos->apagaItem(percorredor->getAnterior());
-                }
-                else{
-                    percorredor = percorredor->getProximo();
-                }
-            }
-        }
+        ItemListaDeNos* percorredor = listaDeCandidatos->getItem(0);
+           while(percorredor->getProximo()!=nullptr){
+               if(percorredor->getClusterAtualSendoTestado()==cluster){
+                   listaDeCandidatosRetiradosTemporariamente->adicionaNo(percorredor->getItem(),percorredor->getClusterAtualSendoTestado());
+                   listaDeCandidatosRetiradosTemporariamente->getUltimo()->setPontuacaoNoCluster(percorredor->getPontuacaoNoCluster());
+                   percorredor = percorredor->getProximo();
+                   listaDeCandidatos->apagaItem(percorredor->getAnterior());
+               }
+               else{
+                   listaDeCandidatosRetiradosTemporariamente->adicionaNo(percorredor->getItem(),percorredor->getClusterAtualSendoTestado());
+                   listaDeCandidatosRetiradosTemporariamente->getUltimo()->setPontuacaoNoCluster(percorredor->getPontuacaoNoCluster());
+                   percorredor = percorredor->getProximo();
+               }
+           }
     }
 
     ListaDeNos** clusters;
-    ListaDeNos* listaDeCanditatos;
+    ListaDeNos* listaDeCandidatos;
+    ListaDeNos* listaDeCandidatosRetiradosTemporariamente;
 
 public:
     Guloso(){
@@ -210,7 +229,8 @@ public:
     void geraSolucao(int nClusters, Grafo* g, int L, int U, float alpha){
 
         //Aqui estao sendo inicializados a Lista de candidatos e a Lista de Clusters
-        listaDeCanditatos = new ListaDeNos();
+        listaDeCandidatos = new ListaDeNos();
+        listaDeCandidatosRetiradosTemporariamente = new ListaDeNos();
         clusters = new ListaDeNos*[nClusters];
         for(int i = 0; i<nClusters; i++){
             clusters[i] = new ListaDeNos(); //Aqui cada um dos clusters é inicializado com uma lista de nos
@@ -221,15 +241,15 @@ public:
         No* percorreNosDoGrafo = g->primeiro;
         while(percorreNosDoGrafo->getProx() != nullptr){
             //Aqui vai ser colocado como se fosse o teste pro cluster 0 pois fica mais facil do que mudar logo a frente
-            listaDeCanditatos->adicionaNo(percorreNosDoGrafo, 0);
+            listaDeCandidatos->adicionaNo(percorreNosDoGrafo, 0);
             percorreNosDoGrafo = percorreNosDoGrafo->getProx();
         }
 
         //Aqui é feita a organização por peso e os nós mais pesados são colocados um em cada cluster
-        quickSortPorPesoDoNo(listaDeCanditatos, 0, listaDeCanditatos->getLength() - 1);
+        quickSortPorPesoDoNo(listaDeCandidatos, 0, listaDeCandidatos->getLength() - 1);
 
         for(int i = 0; i<nClusters; i++){
-            No* noAtual = listaDeCanditatos->popNo(listaDeCanditatos->getLength() - 1);
+            No* noAtual = listaDeCandidatos->popNo(listaDeCandidatos->getLength() - 1);
             clusters[i]->adicionaNo(noAtual,i);
         }
 
@@ -237,10 +257,10 @@ public:
         //Por isso cada item terá nClusters copias de si mesmo (Cada um para o numero de pontos que ele adiciona em cada cluster)
 
         //Aqui salvamos quantos nós tem na CL e fazemos as outras (nClustes - 1) copias de cada item da lista
-        int nNosListaDeCandidatos = listaDeCanditatos->getLength();
+        int nNosListaDeCandidatos = listaDeCandidatos->getLength();
         for (int i = 0; i<nClusters-1; i++){
             for(int j = 0; j<nNosListaDeCandidatos; j++){
-                listaDeCanditatos->adicionaNo(listaDeCanditatos->getNo(j), i + 1);
+                listaDeCandidatos->adicionaNo(listaDeCandidatos->getNo(j), i + 1);
             }
         }
 
@@ -253,8 +273,8 @@ public:
 
         //Vamos colocar em cada um dos clusters a aresta de maior peso, para concluir o HWE (Heavyiest Weight Edge)
         for(int i = 0; i<nCluster; i++){
-            for(int j = 0; j<listaDeCanditatos->getLength(); j++){
-                if(listaDeCanditatos->getItem(j)->getClusterAtualSendoTestado() == i){
+            for(int j = 0; j<listaDeCandidatos->getLength(); j++){
+                if(listaDeCandidatos->getItem(j)->getClusterAtualSendoTestado() == i){
                     this->insereItemNaSolucaoPelosPontos(j,nClusters);
                     break;
                 }
@@ -267,15 +287,15 @@ public:
         srand(seedTime);
 
         //Primeiro Vamos preencher os clusters até o minimo para ser uma solucao viavel
-        while(listaDeCanditatos->getLength() > 0&&!this->oMinimoDosClustersFoiAtingido(L ,nClusters)){
+        while(listaDeCandidatos->getLength() > 0&&!this->oMinimoDosClustersFoiAtingido(L ,nClusters)){
             //Aqui pegamos o teto para o alpha
-            int teto = static_cast<int>(listaDeCanditatos->getLength()*alpha) + 1;
-            if(teto>listaDeCanditatos->getLength()){
-                teto = listaDeCanditatos->getLength();
+            int teto = static_cast<int>(listaDeCandidatos->getLength()*alpha) + 1;
+            if(teto>listaDeCandidatos->getLength()){
+                teto = listaDeCandidatos->getLength();
             }
             int index = this->getRandomNumber(0, teto);
 
-            ItemListaDeNos* itemEscolhido = listaDeCanditatos->getItem(index);
+            ItemListaDeNos* itemEscolhido = listaDeCandidatos->getItem(index);
             int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
 
             //Aqui testamos se esse no faz o cluster passar do peso minimo
@@ -289,7 +309,7 @@ public:
 
                 //Se o no fizer o cluster estourar o maximo tambem, nao pode estar na solucao
                 else{
-                    listaDeCanditatos->apagaItem(itemEscolhido);
+                    listaDeCandidatos->apagaItem(itemEscolhido);
                 }
             }
 
@@ -300,7 +320,12 @@ public:
         }
 
         //Agora como todos já atingiram o minimo vamos preencher os clusters com o resto dos nos
+        if(listaDeCandidatos->getLength() == 0){
+            std::cout << "Nao foi encontrada solucao viavel" << std::endl;
+        }
+        else{
 
+        }
 
     }
 

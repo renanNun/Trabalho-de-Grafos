@@ -24,6 +24,10 @@ int ListaDeNos::getLength(){
     return this->length;
 }
 
+ItemListaDeNos* ListaDeNos::getUltimo(){
+    return this->ultimo;
+}
+
 void ListaDeNos::adicionaNo(No* novoNo, int clusterSendoTestado){
     if(this->ultimo != nullptr){
         ItemListaDeNos* novoItem = new ItemListaDeNos(ultimo, nullptr, novoNo);
