@@ -324,6 +324,18 @@ public:
 
     }
 
+    ListaDeNos** solucaoGuloso(int nClusters, Grafo* g, int L, int U){
+        return;
+    }
+
+    ListaDeNos** solucaoGulosoRandomizado(int nClusters, Grafo* g, int L, int U, int iteracoes){
+        return;
+    }
+
+    ListaDeNos** solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L, int U, int iteracoes){
+        return;
+    }
+
 };
 
 
