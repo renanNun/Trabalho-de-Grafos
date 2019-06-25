@@ -320,12 +320,7 @@ public:
         }
 
         //Agora como todos já atingiram o minimo vamos preencher os clusters com o resto dos nos
-        if(listaDeCandidatos->getLength() == 0){
-            std::cout << "Nao foi encontrada solucao viavel" << std::endl;
-        }
-        else{
-
-        }
+        listaDeCandidatos = listaDeCandidatosRetiradosTemporariamente;
 
     }
 
