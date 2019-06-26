@@ -214,6 +214,14 @@ private:
            }
     }
 
+    float contaPontosDaSolucaoAtual(int nClusters){
+        float pontosTotais = 0;
+        for(int i = 0; i<nClusters; i++){
+            pontosTotais = pontosTotais + clusters[nClusters]->getPontuacaoAtual();
+        }
+        return pontosTotais;
+    }
+
     ListaDeNos** clusters;
     ListaDeNos* listaDeCandidatos;
     ListaDeNos* listaDeCandidatosRetiradosTemporariamente;
@@ -321,10 +329,30 @@ public:
 
         //Agora como todos já atingiram o minimo vamos preencher os clusters com o resto dos nos
         listaDeCandidatos = listaDeCandidatosRetiradosTemporariamente;
+        organizaPorPontosNaSolucao();
+
+        while(listaDeCandidatos->getLength() > 0){
+            int teto = static_cast<int>(listaDeCandidatos->getLength()*alpha) + 1;
+            if(teto>listaDeCandidatos->getLength()){
+                teto = listaDeCandidatos->getLength();
+            }
+            int index = this->getRandomNumber(0, teto);
+
+            ItemListaDeNos* itemEscolhido = listaDeCandidatos->getItem(index);
+            int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
+
+            if(clusters[clusterEscolhido]->getPontuacaoAtual()+itemEscolhido->getItem()->getPeso() > U){
+                listaDeCandidatos->apagaItem(itemEscolhido);
+            }
+            else{
+                insereItemNaSolucaoPelosPontos(index,nClusters);
+            }
 
     }
 
     ListaDeNos** solucaoGuloso(int nClusters, Grafo* g, int L, int U){
+        geraSolucao(nClusters, f, L, U, 0);
+        ListaDeNos** resultadoSolucaoGuloso = clusters;
         return;
     }
 
@@ -334,6 +362,14 @@ public:
 
     ListaDeNos** solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L, int U, int iteracoes){
         return;
+    }
+
+    float contaPontosDeUmaSolucao(ListaDeNos** solucaoASerContada, int nClusters){
+        float pontosTotais = 0;
+        for(int i = 0; i<nClusters;i++){
+            pontosTotais = pontosTotais + solucaoASerContada[nClusters]->getPontuacaoAtual();
+        }
+        return pontosTotais;
     }
 
 };
