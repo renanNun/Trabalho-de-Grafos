@@ -142,20 +142,9 @@ private:
         return rand()%(upper - lower) + lower;
     }
 
-    bool podeAdicionarONoAoCluster(ItemListaDeNos* itemEscolhido, float upperBound){
-        No* noEscolhido = itemEscolhido->getItem();
-        int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
-        if(noEscolhido->getPeso() + clusters[clusterEscolhido]->getPeso() > upperBound){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
-    bool oMinimoDosClustersFoiAtingido(float lowerBound, int nClusters){
+    bool oMinimoDosClustersFoiAtingido(float lowerBound[], int nClusters){
         for(int i = 0; i<nClusters; i++){
-            if(nClusters[i]->getPontuacaoAtual()<lowerBound){
+            if(nClusters[i]->getPontuacaoAtual()<lowerBound[i]){
                 return false;
             }
         }
@@ -234,7 +223,7 @@ public:
         //Destrutor
     }
 
-    void geraSolucao(int nClusters, Grafo* g, int L, int U, float alpha){
+    void geraSolucao(int nClusters, Grafo* g, int L[], int U[], float alpha){
 
         //Aqui estao sendo inicializados a Lista de candidatos e a Lista de Clusters
         listaDeCandidatos = new ListaDeNos();
@@ -307,10 +296,10 @@ public:
             int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
 
             //Aqui testamos se esse no faz o cluster passar do peso minimo
-            if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() > L){
+            if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() > L[clusterEscolhido]){
 
                 //Se ele faz o cluster passar do minimo e ficar abaixo do maximo, limpamos as outras opcoes do cluster temporariamente da CL
-                if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() <U){
+                if(itemEscolhido->getItem()->getPeso() + clusters[clusterEscolhido]->getPeso() <U[clusterEscolhido]){
                     this->insereItemNaSolucaoPelosPontos(index,nClusters);
                     this->limpaOpcoesDoCluster(clusterEscolhido);
                 }
@@ -341,7 +330,7 @@ public:
             ItemListaDeNos* itemEscolhido = listaDeCandidatos->getItem(index);
             int clusterEscolhido = itemEscolhido->getClusterAtualSendoTestado();
 
-            if(clusters[clusterEscolhido]->getPontuacaoAtual()+itemEscolhido->getItem()->getPeso() > U){
+            if(clusters[clusterEscolhido]->getPontuacaoAtual()+itemEscolhido->getItem()->getPeso() > U[clusterEscolhido]){
                 listaDeCandidatos->apagaItem(itemEscolhido);
             }
             else{
@@ -350,17 +339,17 @@ public:
 
     }
 
-    ListaDeNos** solucaoGuloso(int nClusters, Grafo* g, int L, int U){
+    ListaDeNos** solucaoGuloso(int nClusters, Grafo* g, int L[], int U[]){
         geraSolucao(nClusters, f, L, U, 0);
         ListaDeNos** resultadoSolucaoGuloso = clusters;
+        return resultadoSolucaoGuloso;
+    }
+
+    ListaDeNos** solucaoGulosoRandomizado(int nClusters, Grafo* g, int L[], int U[], int iteracoes){
         return;
     }
 
-    ListaDeNos** solucaoGulosoRandomizado(int nClusters, Grafo* g, int L, int U, int iteracoes){
-        return;
-    }
-
-    ListaDeNos** solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L, int U, int iteracoes){
+    ListaDeNos** solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L[], int U[], int iteracoes){
         return;
     }
 
