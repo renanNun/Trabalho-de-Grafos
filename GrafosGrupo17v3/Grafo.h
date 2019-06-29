@@ -2,7 +2,7 @@
 #define GRAFO_H_INCLUDED
 
 #include "No.h"
-#include "Utils/fila.h"
+#include "Fila.h"
 
 
 class Grafo{
@@ -11,7 +11,7 @@ private:
     int numNos;
     int numArestas;
     bool ehDirecionado;
-    No* primeiro;
+
 
 
     void auxBuscaProfundidade(No* p,int* vetorDeVisitados, int id);
@@ -49,6 +49,7 @@ public:
     /* Funções úteis para os algoritmos de Djisktra, Floyd, Prim e Kruskal */
     Grafo* copiaGrafo();
 
+    No* primeiro;
 
 
 };
