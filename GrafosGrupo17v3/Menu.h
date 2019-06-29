@@ -1,5 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
+#include 'Leitura.h'
 
 // Menu que roda as opções e verifica a validade delas
 void Grafo::menu()
@@ -131,19 +132,45 @@ void Grafo::menuSelecionado(char a)
         {
         case 'a':
         {
-            geraSolucao(int nClusters, Grafo* g, int L[], int U[], float alpha);
+        leitor();
+        int nClusters=nClusters;
+        Grafo* g=Grafo* g;
+        int L[]=L[];
+        int U[]=U[];
+        Guloso gul = new Guloso()
+
+           solucaoGuloso(int nClusters, Grafo* g, int L[], int U[])
             break;
         }
 
         case'b':
         {
-            geraSolucao(int nClusters, Grafo* g, int L[], int U[], float alpha);
+        leitor();
+        int nClusters=nClusters;
+        Grafo* g=Grafo* g;
+        int L[]=L[];
+        int U[]=U[];
+        int iterações=iterações;
+        float alpha=alpha;
+           Guloso gul = new Guloso()
+        solucaoGulosoRandomizado(int nClusters, Grafo* g, int L[], int U[], int iteracoes, float alpha)
             break;
         }
 
         case 'c':
         {
-            solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L[], int U[], int iteracoes, int iterEntreAtualizacoes, int alphas[], float fatorAmplificacao);
+        leitor ();
+
+        int nClusters=nClusters;
+        Grafo* g=Grafo* g;
+        int L[]=L[];
+        int U[]=U[];
+        int iterações=iterações;
+        float alpha=alpha;
+        int iterEntreAtualizacoes=fatorAmplificacao;
+        float fatorAmplificacao=fatorAmplificacao;
+         Guloso gul = new Guloso()
+       solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L[], int U[], int iteracoes, int iterEntreAtualizacoes, int alphas[], float fatorAmplificacao);
             break;
         }
         default:
