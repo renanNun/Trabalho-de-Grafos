@@ -18,7 +18,7 @@ void Grafo::menu()
         cout << "[7] - Limpar Grafo" << endl;
         cout << "[8] - Informaçoes do Grafo" << endl;
         cout << "[9] - Guloso" << endl;
-        cout << "[0] - Imprimir Grafo" << endl;
+
         cout << "[q] - sair" << endl;
         cout << endl;
         do
@@ -26,7 +26,7 @@ void Grafo::menu()
             cout << "Digite uma opcao do menu: ";
             cin >> menu;
         }
-        while (((menu < '0' || menu > '9') && (menu < 'a' || menu > 'z')) && menu != 'q');
+        while (((menu < '1' || menu > '9') && (menu < 'a' || menu > 'z')) && menu != 'q');
 
         if (menu == 'q')
         {
@@ -89,8 +89,8 @@ void Grafo::menuSelecionado(char a)
         removeNo(int no);
         break;
     }
-    }
-case '5':
+
+    case '5':
     {
         int id;
         cout<< "Buscando Nó";
@@ -99,17 +99,17 @@ case '5':
         buscaIndice(int id);
         break;
     }
-case '6':
+    case '6':
     {
 
 
     }
-case '7':
+    case '7':
     {
-
-
+        ~Grafo();
+        break;
     }
-case '8':
+    case '8':
     {
         cout>>"Numero de nos:"
             getNumNos();
@@ -121,22 +121,31 @@ case '8':
 
 
     }
-case '9':
+    case '9':
     {
         char a;
         cout>> "qual tipo de guloso? [a] Guloso comum \n [b] Guloso randomizado \n [c] Guloso reativo"
-        cin<<a;
+            cin<<a;
 
         switch(a)
         {
         case 'a':
-        {}
+        {
+            geraSolucao(int nClusters, Grafo* g, int L[], int U[], float alpha);
+            break;
+        }
 
         case'b':
-        {}
+        {
+            geraSolucao(int nClusters, Grafo* g, int L[], int U[], float alpha);
+            break;
+        }
 
         case 'c':
-        {}
+        {
+            solucaoGulosoRandomizadoReativo(int nClusters, Grafo* g, int L[], int U[], int iteracoes, int iterEntreAtualizacoes, int alphas[], float fatorAmplificacao);
+            break;
+        }
         default:
             cout>> "Essa opção não existe";
             break;
@@ -144,13 +153,9 @@ case '9':
 
 
     }
-case '0':
-    {}
 
-default:
-    break;
-}
-}
 
+    }
+}
 
 #endif // MENU_H
