@@ -1,17 +1,49 @@
-#include "leitor.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <list>
+#include <vector>
+#include <cctype>
+#include <unistd.h> //#include <Windows.h>
+#include "Grafo.h"
+#include "Guloso.h"
+#include "ListaDeNos.h"
 
 using namespace std;
 
-leitura()
+void leituraArquivo(string instanceName, char type);
+
+int main()
 {
+    string instancePath = "Sparse82_01.txt";
+    char type = 'a';//oi
+
+    leituraArquivo(instancePath, type);
+    cout << "Acho que funcionou, heim?!" << endl;
+    return 0;
 }
 
-~leitura()
+void leituraArquivo(string instanceName, char instanceType)
 {
-}
+    ifstream instanceFile;
+    string output, totalOutput; //VARIÁVEIS DE EXTRAÇÃO DA STRING. O DOCUMENTO FICARÁ TODO ARMAZENADO EM totalOutput
+    int numElements, numClusters; //NÚMERO DE NÓS, NÚMERO DE CLUSTERS A SEREM FORMADOS
+    bool areClustersSameSized; //VARIÁVEL DETERMINA SE OS CLUSTERS DEVEM TER O MESMO TAMAMHO
+    string strExtractedValue; //VARIÁVEL DE USO NA EXTRAÇÃO, NÃO ARMAZENA INFORMAÇÃO FINAL
+    unsigned long i; //INDICE PARA DETERMINAR UM PONTO DO DOCUMENTO
+    vector <int> clusterLowerLimit; //clusterLowerLimit e clusterUpperLimit são vetores paralelos, os elementos de mesmo indice correspondem ao mesmo cluster
+    vector <int> clusterUpperLimit;
+    vector <float> nodeWeight; //Vetor de peso dos nós
+    vector <vector<int>> edgesWeightElementsMatrix; //MATRIZ ONDE A COLUNA 0 É UMA PONTA DA ARESTA E A COLUNA 1 E A OUTRA PONTA
+    vector <int> edgesWeightElementsRow;
+    vector <double> edgesWeight;
+    vector <int> edgeWeightMatrixRows;
+    vector <vector<int>> edgeWeightMatrix;
+    edgeWeightMatrix.push_back(edgeWeightMatrixRows);
+    int charCounter = 0;
+    double clustersCapacity;
+    double instanceSeed;
 
-void leitura::atribuirDados(std::string instanceName, Grafo *grafo, char instanceType)
-{
     i = 0;
     if (instanceType == 'a' || instanceType == 'A')
     {
@@ -164,19 +196,19 @@ void leitura::atribuirDados(std::string instanceName, Grafo *grafo, char instanc
 
         cout << "O OITAVO PORTÃO: O PORTÃO DA MORTEEEEE! KAI!" << endl;
 
-        Grafo grafo;
-        for (int n = 0; n < numElements; n++)
+        Grafo* grafo = new Grafo();
+        for (int n = 0; n < numElements; n++) //INSERÇÃO DE NÓS
         {
-            grafo.insereNo(n, nodeWeight[n]);
+            grafo->insereNo(n, nodeWeight[n]);
         }
 
-        for (int p = 0; p < numElements; p++)
+        for (int p = 0; p < numElements; p++) //INSERÇÃO DE ARESTAS
         {
-            grafo.insereAresta(edgesWeightMatrix[p][0], edgesWeightMatrix[p][1], edgesWeight[p]);
+            grafo->insereAresta(edgesWeightElementsMatrix[p][0], edgesWeightElementsMatrix[p][1], edgesWeight[p]);
         }
 
-        int clusterLowerLimitArray[clusterLowerLimit.size()];
-        int clusterUpperLimitArray[clusterUpperLimit.size()];
+        float clusterLowerLimitArray[clusterLowerLimit.size()];
+        float clusterUpperLimitArray[clusterUpperLimit.size()];
 
         for (int r = 0; r < clusterLowerLimit.size(); r++)
         {
@@ -185,7 +217,8 @@ void leitura::atribuirDados(std::string instanceName, Grafo *grafo, char instanc
         }
 
         Guloso guloso;
-        guloso.solucaoGulosoRandomizadoReativo(sasuhsanumClusters, grafo, clusterLowerLimitArray, clusterUpperLimitArray, 0.8);
+
+        ListaDeNos** lista = guloso.solucaoGuloso(numClusters, grafo, clusterLowerLimitArray, clusterUpperLimitArray);
     }
     else if (instanceType == 'd' || instanceType == 'D')
     {

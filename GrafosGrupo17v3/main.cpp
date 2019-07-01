@@ -16,7 +16,7 @@ void leituraArquivo(string instanceName, char type);
 int main()
 {
     string instancePath = "Sparse82_01.txt";
-    char type = 'a';
+    char type = 'a';//oi
 
     leituraArquivo(instancePath, type);
     cout << "Acho que funcionou, heim?!" << endl;
@@ -39,7 +39,6 @@ void leituraArquivo(string instanceName, char instanceType)
     vector <double> edgesWeight;
     vector <int> edgeWeightMatrixRows;
     vector <vector<int>> edgeWeightMatrix;
-    edgeWeightMatrix.push_back(edgeWeightMatrixRows);
     int charCounter = 0;
     double clustersCapacity;
     double instanceSeed;
@@ -197,12 +196,12 @@ void leituraArquivo(string instanceName, char instanceType)
         cout << "O OITAVO PORTÃO: O PORTÃO DA MORTEEEEE! KAI!" << endl;
 
         Grafo* grafo = new Grafo();
-        for (int n = 0; n < numElements; n++)
+        for (int n = 0; n < numElements; n++) //INSERÇÃO DE NÓS
         {
             grafo->insereNo(n, nodeWeight[n]);
         }
 
-        for (int p = 0; p < numElements; p++)
+        for (int p = 0; p < numElements; p++) //INSERÇÃO DE ARESTAS
         {
             grafo->insereAresta(edgesWeightElementsMatrix[p][0], edgesWeightElementsMatrix[p][1], edgesWeight[p]);
         }
