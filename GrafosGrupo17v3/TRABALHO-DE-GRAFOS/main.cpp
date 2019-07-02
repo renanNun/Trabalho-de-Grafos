@@ -47,7 +47,7 @@ void leituraArquivo(string instanceName, char instanceType)
     i = 0;
     if (instanceType == 'a' || instanceType == 'A')
     {
-        cout << "O PRIMEIRO PORTÃO: O PORTÃO DE ABERTURA! KAI!" << endl;
+     
         usleep(2100000);                      //Sleep(2100); PARA WINDOWS
         instanceFile.open("Sparse82_01.txt"); //SUBSTITUIR POR: instanceFile.open(instanceName);
         while (!instanceFile.eof())
@@ -57,7 +57,7 @@ void leituraArquivo(string instanceName, char instanceType)
         }
         instanceFile.close();
 
-        cout << "O SEGUNDO PORTÃO: O PORTÃO DA CURA! KAI!" << endl;
+
         usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP DE EXTRAÇÃO DA PRIMEIRA INFORMAÇÃO, O NÚMERO DE ELEMENTOS
         {
@@ -73,7 +73,7 @@ void leituraArquivo(string instanceName, char instanceType)
         numElements = stoi(strExtractedValue);
         strExtractedValue.clear();
 
-        cout << "O TERCEIRO PORTÃO: O PORTÃO DA VIDA! KAI!" << endl;
+   
         usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP PARA EXTRAÇÃO DO NÚMERO DE CLUSTERS A SEREM FORMADOS
         {
@@ -89,7 +89,6 @@ void leituraArquivo(string instanceName, char instanceType)
         numClusters = stoi(strExtractedValue);
         strExtractedValue.clear();
 
-        cout << "O QUARTO PORTÃO: O PORTÃO DA DOR! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP PARA EXTRAÇÃO DO TIPO DE GRUPO ds ss (Clusters de mesmo tamanho) ou ds (Tamanhos diferentes)
         {
@@ -105,7 +104,7 @@ void leituraArquivo(string instanceName, char instanceType)
         areClustersSameSized = bool(!strExtractedValue.compare("ss")); //se for ss, true, se for ds, false
         strExtractedValue.clear();
 
-        cout << "O QUINTO PORTÃO: O PORTÃO DO LIMITE! KAI!" << endl;
+     
         usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int k = 0; k < numClusters; k++) //LOOP PARA EXTRAÇÃO DAS INFORMAÇÕES DE LIMITE DOS CLUSTERS
         {
@@ -139,7 +138,7 @@ void leituraArquivo(string instanceName, char instanceType)
             strExtractedValue.clear();
         }
 
-        cout << "O SEXTO PORTÃO: O PORTÃO DA VISÃO! KAI!" << endl;
+     
         usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int l = 0; l < numElements; l++) //LOOP PARA EXTRAÇÃO DOS PESOS DOS NÓS
         {
@@ -160,7 +159,6 @@ void leituraArquivo(string instanceName, char instanceType)
             strExtractedValue.clear();
         }
 
-        cout << "O SÉTIMO PORTÃO: O PORTÃO DA MARAVILHA! KAI!" << endl;
         usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (isdigit(totalOutput[i]))
         {
@@ -194,7 +192,7 @@ void leituraArquivo(string instanceName, char instanceType)
             edgesWeightElementsMatrix.push_back(edgesWeightElementsRow);
         }
 
-        cout << "O OITAVO PORTÃO: O PORTÃO DA MORTEEEEE! KAI!" << endl;
+       
 
         Grafo* grafo = new Grafo();
         for (int n = 0; n < numElements; n++) //INSERÇÃO DE NÓS
@@ -303,7 +301,7 @@ void leituraArquivo(string instanceName, char instanceType)
             strExtractedValue.clear();
         }
 
-        for (int c = 0; c < numElements; c++) //C++, HAHAHA! É que nem quando você tá assistindo um filme e falam o nome do filme no decorrer da trama.
+        for (int c = 0; c < numElements; c++)  
         {
             edgeWeightMatrixRows.push_back(c);
         }
