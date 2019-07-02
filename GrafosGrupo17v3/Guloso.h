@@ -431,7 +431,7 @@ public:
 
     ListaDeNos** solucaoGuloso(int nClusters, Grafo* g, float L[], float U[])
     {
-        geraSolucao(nClusters, g, L, U, 0);
+        geraSolucao(nClusters, g, L, U, 0.0);
         ListaDeNos** resultadoSolucaoGuloso = clusters;
         return resultadoSolucaoGuloso;
     }

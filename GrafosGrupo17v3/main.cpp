@@ -47,7 +47,6 @@ void leituraArquivo(string instanceName, char instanceType)
     if (instanceType == 'a' || instanceType == 'A')
     {
         cout << "O PRIMEIRO PORTÃO: O PORTÃO DE ABERTURA! KAI!" << endl;
-        usleep(2100000);                      //Sleep(2100); PARA WINDOWS
         instanceFile.open("Sparse82_01.txt"); //SUBSTITUIR POR: instanceFile.open(instanceName);
         while (!instanceFile.eof())
         {
@@ -57,7 +56,6 @@ void leituraArquivo(string instanceName, char instanceType)
         instanceFile.close();
 
         cout << "O SEGUNDO PORTÃO: O PORTÃO DA CURA! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP DE EXTRAÇÃO DA PRIMEIRA INFORMAÇÃO, O NÚMERO DE ELEMENTOS
         {
             if (totalOutput[i] == ' ')
@@ -73,7 +71,6 @@ void leituraArquivo(string instanceName, char instanceType)
         strExtractedValue.clear();
 
         cout << "O TERCEIRO PORTÃO: O PORTÃO DA VIDA! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP PARA EXTRAÇÃO DO NÚMERO DE CLUSTERS A SEREM FORMADOS
         {
             if (totalOutput[i] == ' ')
@@ -89,7 +86,6 @@ void leituraArquivo(string instanceName, char instanceType)
         strExtractedValue.clear();
 
         cout << "O QUARTO PORTÃO: O PORTÃO DA DOR! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (1)        //LOOP PARA EXTRAÇÃO DO TIPO DE GRUPO ds ss (Clusters de mesmo tamanho) ou ds (Tamanhos diferentes)
         {
             if (totalOutput[i] == ' ')
@@ -105,7 +101,6 @@ void leituraArquivo(string instanceName, char instanceType)
         strExtractedValue.clear();
 
         cout << "O QUINTO PORTÃO: O PORTÃO DO LIMITE! KAI!" << endl;
-        usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int k = 0; k < numClusters; k++) //LOOP PARA EXTRAÇÃO DAS INFORMAÇÕES DE LIMITE DOS CLUSTERS
         {
             while (1)
@@ -139,7 +134,6 @@ void leituraArquivo(string instanceName, char instanceType)
         }
 
         cout << "O SEXTO PORTÃO: O PORTÃO DA VISÃO! KAI!" << endl;
-        usleep(1500000);                      //Sleep(1500); PARA WINDOWS
         for (int l = 0; l < numElements; l++) //LOOP PARA EXTRAÇÃO DOS PESOS DOS NÓS
         {
             while (1)
@@ -160,7 +154,6 @@ void leituraArquivo(string instanceName, char instanceType)
         }
 
         cout << "O SÉTIMO PORTÃO: O PORTÃO DA MARAVILHA! KAI!" << endl;
-        usleep(1500000); //Sleep(1500); PARA WINDOWS
         while (isdigit(totalOutput[i]))
         {
             for (int m = 0; m < 3; m++)
@@ -196,6 +189,7 @@ void leituraArquivo(string instanceName, char instanceType)
         cout << "O OITAVO PORTÃO: O PORTÃO DA MORTEEEEE! KAI!" << endl;
 
         Grafo* grafo = new Grafo();
+        grafo->setDirecionado(false);
         for (int n = 0; n < numElements; n++) //INSERÇÃO DE NÓS
         {
             grafo->insereNo(n, nodeWeight[n]);
@@ -208,16 +202,21 @@ void leituraArquivo(string instanceName, char instanceType)
 
         float clusterLowerLimitArray[clusterLowerLimit.size()];
         float clusterUpperLimitArray[clusterUpperLimit.size()];
+        cout << "Arrays criados com successo!" << endl;
 
         for (int r = 0; r < clusterLowerLimit.size(); r++)
         {
             clusterLowerLimitArray[r] = clusterLowerLimit[r];
             clusterUpperLimitArray[r] = clusterUpperLimit[r];
-        }
 
-        Guloso guloso;
+        } cout <<"chegou aqui" << endl;
 
-        ListaDeNos** lista = guloso.solucaoGuloso(numClusters, grafo, clusterLowerLimitArray, clusterUpperLimitArray);
+        Guloso *guloso = new Guloso();
+        cout << "Gula é pecado" << endl;
+
+        ListaDeNos** lista = guloso->solucaoGuloso(numClusters, grafo, clusterLowerLimitArray, clusterUpperLimitArray);
+
+
     }
     else if (instanceType == 'd' || instanceType == 'D')
     {

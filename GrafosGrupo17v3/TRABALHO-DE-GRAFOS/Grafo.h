@@ -34,8 +34,8 @@ public:
     No* buscaNo(int id);
     Aresta* buscaAresta(int no1, int no2);
 
-    int grauDoGrafo(); // Falta Implementar
-    int ordemDoGrafo(); // Falta Implementar
+    int grauDoGrafo();
+    int ordemDoGrafo();
 
     void buscaEmProfundidade(int id);
     int buscaIndice(int id); // Passando um índice como Parâmetro, retorno o vértice Correspondente

@@ -6,7 +6,7 @@
 
 /*** O Problema disso aqui é que tem um custo computacional do caralho, 3 laços ***/
 
-class Floyd
+class /*Pink*/Floyd
 {
 
 private:
@@ -15,7 +15,7 @@ private:
     int **B;
 
 
-    void caminhosMinimos()
+    void caminhosMinimos() //PERCORRE A MATRIZ DE CUSTOS DE CAMINHO REATRIBUINDO OS CAMINHOS MINIMOS DE NO PARA NO
     {
 
         for(int i = 1 ; i <= n ; i++)
@@ -39,7 +39,7 @@ private:
 
     };
 
-    void mostrarMatrizDeCustos()
+    void mostrarMatrizDeCustos() //
     {
 
         for (int i = 1; i <= n; i++)

@@ -114,6 +114,7 @@ void Grafo::insereNo(int id, float peso)
         }
 
         this->numNos++;
+        cout << "No inserido com sucesso! TOP" << endl;
     }
 }
 
@@ -173,12 +174,12 @@ void Grafo::insereAresta(int no1,int no2,float peso)
     if(!this->ehGrafoDirecionado())
     {
 
-        No* p = this->buscaNo(no1);
+        //No* p = this->buscaNo(no1);
         No* t = this->buscaNo(no2);
-        Aresta* a = new Aresta();
+        //Aresta* a = new Aresta();
         Aresta* b = new Aresta();
 
-        a->setPeso(peso);
+        //a->setPeso(peso);
         b->setPeso(peso);
 
 
@@ -191,11 +192,11 @@ void Grafo::insereAresta(int no1,int no2,float peso)
         {
             if (this->buscaAresta(no1,no2) == NULL)
             {
-                if (p != NULL && t != NULL)
+                if (/*p != NULL && */t != NULL)
                 {
-                    p->insereAresta(no2,a);
+                    // p->insereAresta(no2,a);
                     t->insereAresta(no1,b);
-                    p->aumentaGrau();
+                    // p->aumentaGrau();
                     t->aumentaGrau();
                     this->numArestas++;
                 }
@@ -208,8 +209,10 @@ void Grafo::insereAresta(int no1,int no2,float peso)
             {
                 std::cout<< "Aresta já existe entre os Nós!" << std::endl;
             }
+            i++;
+            cout << "Aresta inserida com sucesso! TOP"<< i << endl;
 
-            std::cout << "Não é possível criar aresta em um Grafo direcionado" << std::endl;
+            //std::cout << "Não é possível criar aresta em um Grafo direcionado" << std::endl;
         }
     }
 }
@@ -313,7 +316,8 @@ void Grafo::buscaEmLargura()
 
     int vetorDeVisitados[this->numNos];
 
-    while(p!=NULL){
+    while(p!=NULL)
+    {
         vetorDeVisitados[this->buscaIndice(p->getId())] = 0;
         p = p->getProx();
     }
@@ -325,12 +329,15 @@ void Grafo::buscaEmLargura()
     No* v;
     Aresta* a;
 
-    while(!fila.vazia()){
+    while(!fila.vazia())
+    {
         v = this->buscaNo(fila.desenfileira());
         a = v->getAresta();
 
-        while(a != NULL){
-            if(vetorDeVisitados[this->buscaIndice(a->getId())] == 0){
+        while(a != NULL)
+        {
+            if(vetorDeVisitados[this->buscaIndice(a->getId())] == 0)
+            {
                 vetorDeVisitados[this->buscaIndice(a->getId())] = 1;
                 fila.enfilera(a->getId());
             }
@@ -340,14 +347,16 @@ void Grafo::buscaEmLargura()
     }
 }
 
-void Grafo::quickSort(int lista[], int inicio, int fim){
+void Grafo::quickSort(int lista[], int inicio, int fim)
+{
 
     int i,j, pivo, aux;
     i = inicio;
     j = fim-1;
     pivo = lista[(inicio + fim)/2];
 
-    while (i <= j){
+    while (i <= j)
+    {
 
         while (lista[i] > pivo &&  i < fim)
             i++;
@@ -355,7 +364,8 @@ void Grafo::quickSort(int lista[], int inicio, int fim){
         while (lista[j] < pivo && j > inicio)
             j--;
 
-        if (i <= j){
+        if (i <= j)
+        {
             lista[i] = lista[j];
             lista[j] = aux;
             i++;
@@ -372,17 +382,20 @@ void Grafo::quickSort(int lista[], int inicio, int fim){
 
 /* Funções para implementação dos algoritmos */
 
-Grafo* Grafo::copiaGrafo(){
+Grafo* Grafo::copiaGrafo()
+{
 
     No* p = this->primeiro;
     Aresta* a;
     Grafo* grafoCopiado;
 
-    while( p != nullptr){
+    while( p != nullptr)
+    {
         a = p->getAresta();
         grafoCopiado->insereNo(p->getId(),p->getPeso());
 
-        while(a != nullptr){
+        while(a != nullptr)
+        {
             grafoCopiado->insereNo(a->getId(),buscaNo(a->getId())->getPeso());
             grafoCopiado->insereAresta(a->getId(),a->getId(),a->getPeso());
             a = a->getProx();
@@ -393,3 +406,52 @@ Grafo* Grafo::copiaGrafo(){
 
     return grafoCopiado;
 }
+/*
+void Grafo::imprimeGrafoPNG()
+{
+
+    ofstream arquivo;
+    arquivo.open("GrafoPNG.dot", ios::app | ios::in); //cria se não existir ou reescreve no arquivo GrafoPNG.dot
+
+    if (arquivo.is_open())
+    {
+        arquivo << "Strict Graph A{" << endl;
+        arquivo << "    rankdir=LR;" << endl;
+        No *p = No->getPrimeiro();
+
+        while (p != NULL)
+        {
+            //p é o ponteiro que está na lista de nos do grafo
+            arquivo << "    ";
+            arquivo << p->getInfo();
+            cout << p->getGrau();
+            if (p->getGrau() > 0)
+            {
+
+                Aresta *t = p->t->getProx();
+                arquivo << " -- {";
+
+                while (t != NULL)
+                {
+                    //t é o ponteiro que está na lista de aresta do no
+                    arquivo << (t->getAdjacente())->getInfo() << " ";
+                    t = t->getProx();
+                }
+
+                arquivo << "}";
+            }
+            arquivo << ";" << endl;
+            p = p->getProx();
+        }
+
+        arquivo << "}";
+        arquivo.close();
+
+        system("dot -Tpng -O GrafoPNG.dot"); // cria o png do grafo
+        cout << "Arquivo Concluido!" << endl;
+        system("display GrafoPNG.dot.png"); // mostra a imagem do grafo
+    }
+    else
+        cout << "Erro ao encontrar/criar o arquivo GrafoPNG.dot !" << endl;
+}
+*/

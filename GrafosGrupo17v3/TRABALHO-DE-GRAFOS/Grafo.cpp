@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Grafo::Grafo()
+Grafo::Grafo()  //Construtor
 {
 
     this->numNos= 0;
@@ -16,7 +16,7 @@ Grafo::Grafo()
 
 }
 
-Grafo::~Grafo()
+Grafo::~Grafo() //Destrutor
 {
     No* p = this->primeiro;
 
@@ -53,7 +53,7 @@ void Grafo::setDirecionado(bool x)
     this->ehDirecionado = x;
 }
 
-No* Grafo::buscaNo(int id)
+No* Grafo::buscaNo(int id) //BUSCA UM NÓ PELO ID
 {
     No* p = this->primeiro;
 
@@ -69,7 +69,7 @@ No* Grafo::buscaNo(int id)
     return p;
 }
 
-Aresta* Grafo::buscaAresta(int no1,int no2)
+Aresta* Grafo::buscaAresta(int no1,int no2) //BUSCA ARESTA RECEBENDO COMO PARÂMETRO OS NÓS DA PONTA
 {
 
     No* p = buscaNo(no1);
@@ -89,7 +89,7 @@ Aresta* Grafo::buscaAresta(int no1,int no2)
     return aux;
 }
 
-void Grafo::insereNo(int id, float peso)
+void Grafo::insereNo(int id, float peso) //INSERE UM NÓ RECEBENDO COMO PARAMETRO SEU ID E SEU PESO
 {
 
     No *t = this->primeiro;
@@ -117,7 +117,7 @@ void Grafo::insereNo(int id, float peso)
     }
 }
 
-void Grafo::removeNo(int no)
+void Grafo::removeNo(int no) //REMOVE UM NÓ USANDO COMO PARÂMETRO O ID
 {
     No* p = this->primeiro;
     No* aux = NULL;
@@ -167,7 +167,7 @@ void Grafo::removeNo(int no)
     }
 }
 
-void Grafo::insereAresta(int no1,int no2,float peso)
+void Grafo::insereAresta(int no1,int no2,float peso) //INSERE ARESTA USANDO COMO PARÂMETRO O ID DO NÓS E PESO DA ARESTA
 {
 
     if(!this->ehGrafoDirecionado())
@@ -214,7 +214,7 @@ void Grafo::insereAresta(int no1,int no2,float peso)
     }
 }
 
-void Grafo::removeAresta(int no1,int no2)
+void Grafo::removeAresta(int no1,int no2) //REMOVE ARESTA USANDO COMO PARÂMETRO O ID DOS DOIS NÓS DA PONTA
 {
 
     if(!this->ehGrafoDirecionado())
@@ -239,7 +239,7 @@ void Grafo::removeAresta(int no1,int no2)
     }
 }
 
-void Grafo::buscaEmProfundidade(int id)
+void Grafo::buscaEmProfundidade(int id) // PERCORRE O GRAFO POR BUSCA EM PROFUNDIDADE RECEBENDO O NO INICIAL COMO PARAMETRO
 {
 
     No* p = this->primeiro;
@@ -266,7 +266,7 @@ void Grafo::buscaEmProfundidade(int id)
     delete [] vetorDeVisitados;
 }
 
-void Grafo::auxBuscaProfundidade(No* p,int *vetorDeVisitados,int id)
+void Grafo::auxBuscaProfundidade(No* p,int *vetorDeVisitados,int id) //fUNÇÃO AUXILIAR A BUSCA DE PROFUNDIDADE
 {
     Aresta* a = p->getAresta();
 
@@ -305,7 +305,7 @@ int Grafo::buscaIndice(int id)  // Passando um índice como Parâmetro, retorno o 
     return -1; // Caso não encontre o id.
 }
 
-void Grafo::buscaEmLargura()
+void Grafo::buscaEmLargura() // fUNÇÃO QUE PERCORRE O Grafo em largura
 {
     Fila fila;
 
@@ -340,7 +340,7 @@ void Grafo::buscaEmLargura()
     }
 }
 
-void Grafo::quickSort(int lista[], int inicio, int fim){
+void Grafo::quickSort(int lista[], int inicio, int fim){  //ORDENA A LISTA DE NOS DO GRAFO DE ACORDO COM ...
 
     int i,j, pivo, aux;
     i = inicio;
@@ -372,7 +372,7 @@ void Grafo::quickSort(int lista[], int inicio, int fim){
 
 /* Funções para implementação dos algoritmos */
 
-Grafo* Grafo::copiaGrafo(){
+Grafo* Grafo::copiaGrafo(){ //CRIA UMA COPIA DO GRAFO EM OUTRA INSTANCIA TAMBÉM DA CLASSE GRAFO
 
     No* p = this->primeiro;
     Aresta* a;

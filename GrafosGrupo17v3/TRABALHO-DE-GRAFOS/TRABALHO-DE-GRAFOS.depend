@@ -16,13 +16,13 @@
 1561988628 /home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Fila.h
 	"No.h"
 
-1562011811 source:/home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Grafo.cpp
+1562079354 source:/home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Grafo.cpp
 	<iostream>
 	<stdlib.h>
 	"Grafo.h"
 	"Aresta.h"
 
-1562011824 /home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Grafo.h
+1562079354 /home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Grafo.h
 	"No.h"
 	"Aresta.h"
 	"Fila.h"
@@ -31,7 +31,7 @@
 1562023561 source:/home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Guloso.cpp
 	"Guloso.h"
 
-1562023635 /home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Guloso.h
+1562080787 /home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/Guloso.h
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -66,7 +66,7 @@
 	"No.h"
 	"ItemListaDeNos.h"
 
-1562010897 source:/home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/main.cpp
+1562079511 source:/home/bryan/Documentos/trabalho-de-grafos/Trabalho-de-Grafos/GrafosGrupo17v3/main.cpp
 	<iostream>
 	<string>
 	<fstream>

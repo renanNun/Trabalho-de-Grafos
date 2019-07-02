@@ -14,6 +14,7 @@ private:
     int numNos;
     int numArestas;
     bool ehDirecionado;
+    int i = 0;
 
 
 
@@ -29,6 +30,7 @@ public:
 
     bool ehGrafoDirecionado();
     void setDirecionado(bool x);
+    //void imprimeGrafoPNG();
 
     No* getPrimeiroNo();
     No* buscaNo(int id);
